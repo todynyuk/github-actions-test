@@ -16,4 +16,4 @@ jobs:
       - name: Install the necessary packages
         run: pip install -r requirements.txt
       - name: Run the PytTest script
-        run: pytest -vs
+        run: python test_request.py
