@@ -17,7 +17,7 @@ CorrectSearchTest
     set selenium speed  2seconds
     input text  xpath://input[@name='search']    ${correctSearch}
     click button    xpath://button[contains(@class, 'button_color_green')]
-    Element Should Contain    xpath://h1[contains(@class, 'catalog-heading')]    ${correctSearch}   Page not contains search text
+    Element Should Contain    //h1[contains(@class, 'catalog-heading')]    ${correctSearch}   Page not contains search text
     Element Should Contain    xpath://span[@class='goods-tile__title'][1]    ${correctSearch}   Page not contains search text
 
 IncorrectSearchTest
