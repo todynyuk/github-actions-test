@@ -1,7 +1,8 @@
 name: cron_request_test
 on:
   schedule:
-    - cron: '* * * * *'  
+    #- cron: '* * * * *'#work 
+    - cron: '0 10 * * *'
 jobs:
   test01:
     runs-on: ubuntu-latest
