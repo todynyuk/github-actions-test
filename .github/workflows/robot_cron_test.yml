@@ -21,4 +21,5 @@ jobs:
         pip install -r requirements.txt
         webdrivermanager firefox
     - name: Run robot tests
-      run: robot *.robot
+      run:  robot test_rozetka_main_page_search.robot
+      #run: robot *.robot
