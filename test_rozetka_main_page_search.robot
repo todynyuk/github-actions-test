@@ -1,6 +1,5 @@
 *** Settings ***
 Library  SeleniumLibrary
-Test Setup      Open Browser  browser=headlessfirefox
 Test Teardown	Close Browser
 
 *** Variables ***
