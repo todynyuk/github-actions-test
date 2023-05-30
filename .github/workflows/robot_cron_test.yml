@@ -22,7 +22,7 @@ jobs:
         pip install robotframework
         pip install robotframework-seleniumlibrary
         pip install webdrivermanager
-        webdrivermanager chrome
+        webdrivermanager firefox
     - name: Run robot tests
       #run: |
          # robot -d ./logs -v browser:chromium -v headless:true test_rozetka_main_page_search.robot
