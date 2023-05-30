@@ -20,5 +20,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Run robot tests
-      run:  robot test_rozetka_main_page_search.robot
+      run: |
+          robot -d ./logs -v browser:chromium -v headless:true test_rozetka_main_page_search.robot
+      #run:  robot test_rozetka_main_page_search.robot
       #run: robot *.robot
