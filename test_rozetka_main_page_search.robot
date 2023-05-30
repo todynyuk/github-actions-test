@@ -4,6 +4,7 @@ Test Setup      Open Browser  browser=headlessfirefox
 Test Teardown	Close Browser
 
 *** Variables ***
+${browser}  chrome
 ${url}  https://rozetka.com.ua/ua/
 ${correctSearch}    AGM A9
 ${incorrectSearch}  jhvjhjhjhv
@@ -11,7 +12,7 @@ ${incorrectSearch}  jhvjhjhjhv
 *** Test Cases ***
 CorrectSearchTest
     [Tags]  maintainer=todynyuk
-    Go To  ${url}
+    open browser    ${url}   ${browser}
     maximize browser window
     set selenium speed  2seconds
     input text  xpath://input[@name='search']    ${correctSearch}
@@ -21,7 +22,7 @@ CorrectSearchTest
 
 IncorrectSearchTest
     [Tags]  maintainer=todynyuk
-    Go To  ${url}
+    open browser    ${url}   ${browser}
     input text  xpath://input[@name='search']  ${incorrectSearch}
     click button    xpath://button[contains(@class, 'button_color_green')]
     element should be enabled   xpath://span[@class='ng-star-inserted']
