@@ -16,6 +16,8 @@ jobs:
           python-version: '3.9'
       - name: Install the necessary packages
         run: pip install -r requirements.txt
+      - name: Install Pytest Playwright
+        run: pip install pytest-playwright
       - name: Install Playwright
         run: playwright install
       - name: Run the PytTest script
