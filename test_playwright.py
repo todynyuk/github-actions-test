@@ -1,18 +1,11 @@
-import os
-from playwright.sync_api import Playwright, sync_playwright, expect
+import re
+from playwright.sync_api import Page, expect
 
-URL = "https://demo.mediacms.io/accounts/signup/"
 
-def run(playwright: Playwright) -> None:
-    browser = playwright.chromium.launch(headless=False)
-    context = browser.new_context()
-    page = context.new_page()
-    page.goto(URL)
-    expect(page).to_have_title("MediaCMS")
-
-register_page = page.get_by_role("link", name="Register")
-register_page.click()
-
-expect(page).to_have_url("https://demo.mediacms.io/accounts/signup/")
-with sync_playwright() as playwright:
-    run(playwright)
+def test_homepage_has_Playwright_in_title_and_get_started_link_linking_to_the_intro_page(page: Page):
+    page.goto("https://playwright.dev/")
+    expect(page).to_have_title(re.compile("Playwright"))
+    get_started = page.get_by_role("link", name="Get started")
+    expect(get_started).to_have_attribute("href", "/docs/intro")
+    get_started.click()
+    expect(page).to_have_url(re.compile(".*intro"))
