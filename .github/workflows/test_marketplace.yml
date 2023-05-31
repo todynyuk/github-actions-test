@@ -31,8 +31,7 @@ jobs:
       - name: execute py script 
         env:
           SOME_SECRET: ${{ secrets.TEST_SECRET }}
-        #run: python test_capitalize.py #working
-        run: python unittest.py
+        run: python test_capitalize.py #working
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
