@@ -32,30 +32,10 @@ jobs:
         env:
           SOME_SECRET: ${{ secrets.TEST_SECRET }}
         run: python test_capitalize.py
-      - uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
-
-      - uses: ./
-        name: json to file
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
         with:
-          json: '{"foo": "test"}'
-          filename: 'test.json'
-        id: store-json
-
-      - shell: pwsh        
-        run: |
-         $content = Get-Content -Path 'test.json'
-         $test = $content | ConvertFrom-Json
-         if ($test.foo -eq 'test') {
-            Write-Host "File found correct"
-         } 
-         else {
-            Write-Host "Found this json:"
-            Write-Host $test | ConvertTo-Json
-         }
-            
-      - name: Upload result file as artefact
-        uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v2.3.1
-        with: 
-          name: test
-          path: test.json
+          files: |
+            test-results/**/*.xml
             
