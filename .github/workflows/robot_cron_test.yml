@@ -3,7 +3,8 @@ name: Headless_robot_tests
 on:
   schedule:
     #- cron: '* * * * *' #work
-    - cron: '0 10 * * *'
+    #- cron: '0 10 * * *'
+    - cron: '25,55 * * * *'
     
 jobs:
   build:
