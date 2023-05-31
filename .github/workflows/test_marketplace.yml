@@ -28,10 +28,11 @@ jobs:
       - name: install python packages
         run: |
           python -m pip install --upgrade pip
-      - name: execute py script # run main.py
+      - name: execute py script 
         env:
           SOME_SECRET: ${{ secrets.TEST_SECRET }}
-        run: python test_capitalize.py
+        #run: python test_capitalize.py #working
+        run: python unittest.py
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
