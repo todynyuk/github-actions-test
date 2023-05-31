@@ -37,4 +37,5 @@ jobs:
         if: always()
         with:
           files: |
-            test-results/**/*.xml
+           src/test/resources/xml/*.xml
+            
