@@ -1,7 +1,7 @@
 import os
 from playwright.sync_api import Playwright, sync_playwright, expect
 
-URL = os.environ.get("URL")
+URL = "https://demo.mediacms.io/accounts/signup/"
 
 def run(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False)
