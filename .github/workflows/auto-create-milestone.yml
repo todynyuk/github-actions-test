@@ -10,7 +10,7 @@ on:
 jobs:
   milestones:
     runs-on: ubuntu-latest
-    name: Create Milestones on a schedule
+    name: Create Milestones automaticly
     steps:
     - name: Create Milestones
       uses: MrGossett/github-action-milestone-schedule@v1
