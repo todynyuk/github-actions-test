@@ -8,19 +8,15 @@ on:
     branches: [ master ]
 
 jobs:
-  generate:
+  milestones:
     runs-on: ubuntu-latest
+    name: Create Milestones on a schedule
     steps:
-      - uses: actions/checkout@v2
-
-      - uses: readmeio/scheduled-milestones@v1.0.0
-        id: run
-        with:
-          token: ${{ secrets.MILESTONES }}
-          title: d-
-          days: Friday
-          count: 4
-          format: YYYY.MM.DD
-
-      - name: result
-        run: echo ${{ steps.run.outputs.milestones }}
+    - name: Create Milestones
+      uses: MrGossett/github-action-milestone-schedule@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.MILESTONES }}
+      with:
+        recurrence: 'FREQ=WEEKLY;BYDAY=FR;DTSTART=20191213T220000Z'
+        format: 'Done 06-Jan-02'
+        count: 4
