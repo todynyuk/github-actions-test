@@ -5,7 +5,7 @@ HOST = "localhost"
 def test_firefox():
     capabilities = {
         "browserName": "firefox",
-        "version": "72.0",
+        "version": "108.0",
         "enableVNC": False,
         "enableVideo": False
     }
@@ -13,12 +13,14 @@ def test_firefox():
                                desired_capabilities=capabilities)
     firefox.get('https://www.google.com')
     print('firefox', firefox.title)
+    title=firefox.title
+    assert title=="Google", "Title not are Google"
     firefox.quit()
 
 def test_chrome():
     capabilities = {
         "browserName": "chrome",
-        "version": "80.0_VNC",
+        "version": "108.0_VNC",
         "enableVNC": True,
         "enableVideo": False
     }
@@ -26,6 +28,7 @@ def test_chrome():
                               desired_capabilities=capabilities)
     chrome.get('https://www.google.com')
     print('chrome', chrome.title)
+    assert title=="Google", "Title not are Google"
     chrome.quit()
 
 
