@@ -1,8 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 capabilities = {
-    "browserName": "chrome",
-    "version": "90.0",
+    "browserName": "firefox",
+    "version": "88.0",
     "platform": "LINUX"
 }
 driver = webdriver.Remote(
