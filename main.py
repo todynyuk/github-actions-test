@@ -28,7 +28,7 @@ try:
     search_input.send_keys(word)
     search_button = driver.find_element(By.CSS_SELECTOR, "button[class*='button_color_green']")
     search_button.click()
-    search_results = driver.find_element(By.XPATH, "//span[@class='goods-tile__title']").text
+    search_results = driver.find_elements(By.CLASS_NAME, "goods-tile__title").text
     assert len(search_results) > 0
     logging.info("Verify is the result contain '%s'", str(word))
     for result in search_results:
