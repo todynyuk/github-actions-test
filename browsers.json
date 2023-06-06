@@ -2,12 +2,6 @@
     "firefox": {
         "default": "108.0",
         "versions": {
-            "108.0_VNC": {
-                "image": "selenoid/vnc_firefox:108.0",
-                "port": "4444",
-                "path": "/wd/hub",
-                "env" : ["TZ=Europe/London", "LANG=en_EN.UTF-8", "LANGUAGE=en:en", "LC_ALL=en_EN.UTF-8"]
-            },
             "108.0": {
                 "image": "selenoid/firefox:108.0",
                 "port": "4444",
@@ -21,12 +15,6 @@
         "versions": {
             "108.0": {
                 "image": "selenoid/chrome:108.0",
-                "port": "4444",
-                "path": "/",
-                "env" : ["TZ=Europe/London", "LANG=en_EN.UTF-8", "LANGUAGE=en:en", "LC_ALL=en_EN.UTF-8"]
-            },
-            "108.0_VNC": {
-                "image": "selenoid/vnc_chrome:108.0",
                 "port": "4444",
                 "path": "/",
                 "env" : ["TZ=Europe/London", "LANG=en_EN.UTF-8", "LANGUAGE=en:en", "LC_ALL=en_EN.UTF-8"]
