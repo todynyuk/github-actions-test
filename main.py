@@ -1,22 +1,18 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
- 
 capabilities = {
     "browserName": "chrome",
     "version": "90.0",
     "platform": "LINUX"
 }
- 
 driver = webdriver.Remote(
     command_executor='http://localhost:4444/wd/hub',
     desired_capabilities=capabilities
 )
- 
 try:
 print 'Session ID is: %s' % driver.session_id
 print 'Opening the page...'
  driver.get("http://www.python.org")
- 
  assert "Python" in driver.title
  elem = driver.find_element_by_name("q")
  elem.clear()
