@@ -28,14 +28,14 @@ try:
     search_input.send_keys(word)
     search_button = driver.find_element(By.CSS_SELECTOR, "button[class*='button_color_green']")
     search_button.click()
-    search_results = driver.find_elements(By.CLASS_NAME, "goods-tile__title").text
+    search_results = driver.find_elements(By.CLASS_NAME, "goods-tile__title")
     assert len(search_results) > 0
     logging.info("Verify is the result contain '%s'", str(word))
     for result in search_results:
         count += 1
         if count > 5:
             break
-        title_text = result.lower()
+        title_text = result.text.lower()
         logging.info("Checking the following: '%s'", title_text)
         assert word.lower() in title_text
 except AssertionError:
