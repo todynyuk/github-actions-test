@@ -8,6 +8,8 @@ on:
     branches: [ master ]
 permissions:
   contents: read
+env:
+  ARTIFACT_NAME: myartifact
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -34,10 +36,15 @@ jobs:
         env:
           SOME_SECRET: ${{ secrets.TEST_SECRET }}
         run: python main.py
-      - name: Upload pytest test results
-        uses: actions/upload-artifact@v3
+      - name: Get test file
+        uses: actions/upload-artifact@v2
         with:
-          name: pytest-results
-          path: test-results.xml
-        # Use always() to always run this step to publish test results when there are test failures
-        if: ${{ always() }}
+          name: main
+          path: .
+      - name: Checkout the code
+        uses: actions/checkout@v2
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.ARTIFACT_NAME }}.txt
+          path: .
