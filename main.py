@@ -27,7 +27,7 @@ try:
     search_input.click()
     search_input.clear()
     search_input.send_keys(word)
-    search_box.submit()
+    search_input.submit()
     search_button = driver.find_element(By.XPATH, "//button[contains(@class, 'button_color_green')]")
     search_button.click()
     search_results = driver.find_elements(By.XPATH, "//span[contains(@class, 'goods-tile__title')]")
