@@ -34,9 +34,10 @@ jobs:
         env:
           SOME_SECRET: ${{ secrets.TEST_SECRET }}
         run: python main.py
-      - name: adding artifact
-        uses: actions/upload-artifact@v2  # upload test results
-        if: success() || failure()        # run this step even if previous step failed
+      - name: Upload pytest test results
+        uses: actions/upload-artifact@v3
         with:
-          name: test-results
-          path: jest-junit.xml
+          name: pytest-results
+          path: test-results.xml
+        # Use always() to always run this step to publish test results when there are test failures
+        if: ${{ always() }}
