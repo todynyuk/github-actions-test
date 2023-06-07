@@ -4,3 +4,5 @@
 
 [![Headless_robot_tests](https://github.com/todynyuk/github-actions-test/actions/workflows/robot_cron_test.yml/badge.svg)](https://github.com/todynyuk/github-actions-test/workflows/actions/robot_cron_test.yml)
 
+![GitHub language count](https://img.shields.io/github/languages/count/todynyuk/github-actions-test)
+
