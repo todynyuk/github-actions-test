@@ -32,11 +32,9 @@ try:
     search_input.submit()
     search_button = driver.find_element(By.XPATH, "//button[contains(@class, 'button_color_green')]")
     search_button.click()
-    #search_results = WebDriverWait(driver, 5).until(EC.visibility_of_all_elements_located((By.XPATH, "//span[contains(@class, 'goods-tile__title')]")))
     search_results = WebDriverWait(driver, 5).until(EC.visibility_of_all_elements_located((By.CLASS_NAME, "goods-tile__title")))
-    #search_results = driver.find_elements(By.XPATH, "//span[contains(@class, 'goods-tile__title')]")
     print("Length search_results: ",len(search_results))
-    #assert len(search_results) > 0,"Length == 0"
+    assert len(search_results) > 0,"Length == 0"
     logging.info("Verify is the result contain '%s'", str(word))
     for result in search_results:
         count += 1
