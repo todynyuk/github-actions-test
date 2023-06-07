@@ -24,6 +24,7 @@ try:
     driver.get("https://rozetka.com.ua/ua/")
     assert "ROZETKA" in driver.title,"Title not contains ROZETKA"
     search_input = driver.find_element(By.NAME, "search")
+    search_input.click()
     search_input.clear()
     search_input.send_keys(word)
     search_button = driver.find_element(By.CSS_SELECTOR, "button[class*='button_color_green']")
