@@ -23,13 +23,14 @@ try:
     logging.info('Opening the page...')
     driver.get("https://rozetka.com.ua/ua/")
     assert "ROZETKA" in driver.title,"Title not contains ROZETKA"
-    search_input = driver.find_element(By.NAME, "search")
+    search_input = driver.find_element(By.XPATH, "//input[contains(@class, 'search-form')]")
     search_input.click()
     search_input.clear()
     search_input.send_keys(word)
+    search_box.submit()
     search_button = driver.find_element(By.XPATH, "//button[contains(@class, 'button_color_green')]")
     search_button.click()
-    search_results = driver.find_elements(By.CLASS_NAME, "goods-tile__title")
+    search_results = driver.find_elements(By.XPATH, "//span[contains(@class, 'goods-tile__title')]")
     print("Length search_results: ",len(search_results))
     #assert len(search_results) > 0,"Length == 0"
     logging.info("Verify is the result contain '%s'", str(word))
