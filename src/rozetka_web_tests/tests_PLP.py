@@ -26,7 +26,7 @@ class TestDevicesCategoryPage:
         DeviceCategory.click_check_box_filter(self, driver, "Є в наявності")
         length = DeviceCategory.check_is_all_goods_available(self, driver, "Немає в наявності")
         assert length == 0, "One or more goods are not available"
-        attach_logs(logging.INFO, 'Test was successful')
+        logging.INFO('Test was successful')
 
     def testVerifyItemRamMatrixTypeAndProcessor(self, driver):
         main_page = MainPage(driver, 'https://rozetka.com.ua/ua/')
@@ -52,7 +52,7 @@ class TestDevicesCategoryPage:
             "Matrix type text not contains in about device text"
         assert DevicePage.verifyChosenParamInAllCharacteristics(self, driver,
                                                                 "Моноблок"), "Computer type text not contains in description device text"
-        attach_logs(logging.INFO, 'Test was successful')
+        logging.INFO('Test was successful')
 
     @pytest.mark.skip(reason="Rozetka have problem with sorting by price")
     def testVerifySortByPrice(self, driver):
@@ -79,7 +79,7 @@ class TestDevicesCategoryPage:
         DeviceCategory.clickBuyButtonByIndex(self, driver, 1)
         assert DeviceCategory.isAddedToCartGoodsCounterTextPresent(self, driver) != False, \
             "Cart Goods Counter Text isn't presented"
-        attach_logs(logging.INFO, 'Test was successful')
+        logging.INFO('Test was successful')
 
     def test_choose_brands_and_check(self, driver):
         main_page = MainPage(driver, 'https://rozetka.com.ua/ua/')
@@ -95,4 +95,4 @@ class TestDevicesCategoryPage:
             "List chosen parameters not contains this parameter"
         assert DeviceCategory.check_chosen_filters_contains_chosen_brands(self, driver, "Motorola"), \
             "List chosen parameters not contains this parameter"
-        attach_logs(logging.INFO, 'Test was successful')
+        logging.INFO('Test was successful')
