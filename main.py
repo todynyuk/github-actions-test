@@ -5,7 +5,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
- def test_firefox():
+def test_firefox():
     capabilities = {
         "browserName": "firefox",
         "version": "88.0",
