@@ -1,0 +1,35 @@
+name: Artifact
+
+on: 
+    workflow_dispatch:
+    push:
+      branches: [ master ]
+
+env:
+  ARTIFACT_NAME: myartifact
+  
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: python test.py
+  build:
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/upload-artifact@v2
+        with:
+          name: test
+          path: .
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.ARTIFACT_NAME }}.txt
+          path: .
