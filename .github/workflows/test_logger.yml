@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/upload-artifact@v2
         with:
-          name: test
+          name: test.txt
           path: .
   main:
     runs-on: ubuntu-latest
@@ -31,5 +31,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ env.ARTIFACT_NAME }}.txt
+          name: ${{ env.ARTIFACT_NAME }}
           path: .
