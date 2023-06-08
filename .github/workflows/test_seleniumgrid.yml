@@ -1,0 +1,56 @@
+name: TestSeleniumGrid
+
+on:
+  schedule:
+    - cron: '00 12 * * *'
+#  push:
+#    branches:
+#      -main
+
+  workflow_dispatch:
+
+env:
+  PLAN_NAME: Selenium Grid Pytest
+
+jobs:
+  build:
+    runs-on:  ubuntu-latest
+    env:
+      JOB_NAME: build
+
+    steps:
+
+      - name: Checking out Github Repo
+        uses: actions/checkout@v3
+      - name: Setting up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+
+      - name: Update APT packages
+        run: |
+          sudo apt update
+          sudo apt install --only-upgrade openssl
+
+      - name: Docker Compose
+        run: |
+          docker-compose up -d
+          sleep 1
+      - name: Install Virtualenv, Dependencies and Run Pytest
+        run: |
+          docker ps -a
+          pip install -r requirements.txt
+          pytest --version
+          cd src
+          cd TestCases
+          python -m pytest -vs TestSeleniumGrid.py
+      - name: Check docker container status after executing test case
+        if: failure()
+        run:  docker ps -a
+
+      - name: Output Result
+        uses: actions/upload-artifact@v3
+        with:
+          name: Output Screenshot
+          path: src/TestCases/output/screen.png
