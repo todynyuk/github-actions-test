@@ -5,6 +5,7 @@ from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 import time,os,shutil
 from jproperties import Properties
+import logging
 
 def test_seleniumgrid():
     configs = Properties()
@@ -22,8 +23,8 @@ def test_seleniumgrid():
     driver.get("https://www.whatismybrowser.com/")
     driver.maximize_window()
     time.sleep(5)
-    print("browser opened")
-    print(os.getcwd())
+    logging.INFO("browser opened")
+    logging.INFO(os.getcwd())
     if os.path.exists(os.path.join(os.getcwd(),'output')):
         shutil.rmtree(os.path.join(os.getcwd(),'output'))
 
