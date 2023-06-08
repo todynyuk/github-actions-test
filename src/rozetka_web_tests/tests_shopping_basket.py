@@ -26,7 +26,7 @@ class TestShoppingBasket:
         smartphone_price_multiply = (smartphone_price * 3)
         time.sleep(2)
         assert smartphone_price_multiply == ShoppingBasket.getSumPriceText(self, driver), "Prices are not equals"
-        logging.INFO, 'Test was successful'
+        logging.INFO('Test was successful')
 
     def testAddGoodsInBasketAndCheckItEmpty(self, driver):
         main_page = MainPage(driver, 'https://rozetka.com.ua/ua/')
@@ -39,4 +39,4 @@ class TestShoppingBasket:
             "Basket empty status text is presented"
         goods_in_shopping_basket_count = ShoppingBasket.getGoodsInCartListSize(self, driver)
         assert goods_in_shopping_basket_count > 0, "Basket is empty"
-        logging.INFO, 'Test was successful'
+        logging.INFO('Test was successful')
