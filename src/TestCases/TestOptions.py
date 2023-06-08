@@ -12,8 +12,8 @@ def test_options():
     driver.get("https://www.whatismybrowser.com/")
     driver.maximize_window()
     time.sleep(5)
-    print("browser opened")
-    print(os.getcwd())
+    logging.INFO("browser opened")
+    logging.INFO(os.getcwd())
     if os.path.exists(os.path.join(os.getcwd(),'output')):
         shutil.rmtree(os.path.join(os.getcwd(),'output'))
 
