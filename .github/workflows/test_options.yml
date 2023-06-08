@@ -1,0 +1,72 @@
+name: GithubActionsTest
+
+on:
+  schedule:
+    - cron: '00 11 * * *'
+#  push:
+#    branches:
+#      -main
+
+  workflow_dispatch:
+    inputs:
+      browser:
+        type: choice
+        description: select browser name
+        options:
+          - chrome
+          - firefox
+      message:
+          required: true
+
+
+
+env:
+  PLAN_NAME: GithubActionsPytest
+
+jobs:
+  build:
+    runs-on:  ubuntu-latest
+    env:
+      JOB_NAME: build
+    steps:
+      - name: Checking out Github Repo
+        uses: actions/checkout@v3
+      - name: Setting up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Installing package list
+        run: apt list --installed
+
+      - name: Print Environment Variables
+        run: echo "$PLAN_NAME and $JOB_NAME"
+
+      - name: Download Chrome, Virtualenv and Packages and Run Pytest
+        run: |
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo dpkg -i google-chrome-stable_current_amd64.deb
+          google-chrome --version
+          pip install -r requirements.txt
+          pytest --version
+          cd src
+          cd TestCases
+          python -m pytest -vs TestOptions.py
+      - name: Output Result
+        uses: actions/upload-artifact@v3
+        with:
+          name: Output Screenshot
+          path: src/TestCases/output/screen.png
+
+      - name: Failure Run
+        if: failure()
+        run:  echo "failure occured"
+
+      - name: Success Run
+        if: success()
+        run:  echo "success occured"
+
+      - name: Always Run
+        if: always()
+        run:  |
+          echo "always occured"
+          echo "${{ github.event.inputs.browser }}"
