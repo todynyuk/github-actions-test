@@ -4,7 +4,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 import time,os,shutil
 
-def test_tutorial():
+def test_options():
     options = Options()
     options.add_argument('--headless')
     options.add_argument('--disable-gpu')
