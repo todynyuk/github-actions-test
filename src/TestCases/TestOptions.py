@@ -20,12 +20,5 @@ def test_options():
         shutil.rmtree(os.path.join(os.getcwd(), 'output'))
 
     os.mkdir('output')
-    f_handler = logging.FileHandler('report.txt')
-
-
-    formatter = logging.Formatter('%(asctime)s  - %(levelname)s - %(message)s')
-
-    f_handler.setFormatter(formatter)
-    logger.addHandler(f_handler)
     driver.save_screenshot('output/screen.png')
     driver.close()
