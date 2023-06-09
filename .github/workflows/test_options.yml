@@ -55,7 +55,7 @@ jobs:
           pip install -r requirements.txt
           cd src
           cd TestCases
-          python -m pytest -vs TestOptions.py > output.txt 2>&1
+          python -m pytest -vs TestOptions.py > output.txt
        #  python script.py > output.txt 2> error.txt
         #  python TestOptions.py
       - name: Output Result
