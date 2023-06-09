@@ -13,10 +13,12 @@ def test_options():
     options.add_argument('--headless')
     options.add_argument('--disable-gpu')
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
+    logging.info("browser opened")
+    logging.info('Opening the page...')
+    print("Test Print Function In Logs Artifact")
     driver.get("https://www.whatismybrowser.com/")
     driver.maximize_window()
     time.sleep(5)
-    logging.info("browser opened")
     logging.info(os.getcwd())
     if os.path.exists(os.path.join(os.getcwd(), 'output')):
         shutil.rmtree(os.path.join(os.getcwd(), 'output'))
