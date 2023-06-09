@@ -1,8 +1,10 @@
 name: GithubActionsTest
 
 on:
-  schedule:
-    - cron: '15 7 * * 1-5'
+ # schedule:
+  #  - cron: '15 7 * * 1-5'
+  push:
+     branches: [ master ]
 #  push:
 #    branches:
 #      -main
@@ -46,11 +48,13 @@ jobs:
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           sudo dpkg -i google-chrome-stable_current_amd64.deb
           google-chrome --version
+          pip install --upgrade pip
+          pip install pytest
           pip install -r requirements.txt
-          pytest --version
           cd src
           cd TestCases
           python -m pytest -vs TestOptions.py
+        #  python TestOptions.py
       - name: Output Result
         uses: actions/upload-artifact@v3
         with:
