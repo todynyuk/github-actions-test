@@ -20,7 +20,7 @@ def test_options():
         shutil.rmtree(os.path.join(os.getcwd(), 'output'))
 
     os.mkdir('output')
-    f_handler = logging.FileHandler('output/report.log')
+    f_handler = logging.FileHandler('output/report.txt')
 
 
     formatter = logging.Formatter('%(asctime)s  - %(levelname)s - %(message)s')
