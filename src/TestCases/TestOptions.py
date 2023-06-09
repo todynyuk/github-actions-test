@@ -6,6 +6,7 @@ import time,os,shutil
 import logging
 
 def test_options():
+    logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.DEBUG)
     options = Options()
     options.add_argument('--headless')
     options.add_argument('--disable-gpu')
@@ -13,8 +14,8 @@ def test_options():
     driver.get("https://www.whatismybrowser.com/")
     driver.maximize_window()
     time.sleep(5)
-    logging.INFO("browser opened")
-    logging.INFO(os.getcwd())
+    logging.info("browser opened")
+    logging.info(os.getcwd())
     if os.path.exists(os.path.join(os.getcwd(),'output')):
         shutil.rmtree(os.path.join(os.getcwd(),'output'))
 
