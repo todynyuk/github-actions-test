@@ -8,6 +8,7 @@ from jproperties import Properties
 import logging
 
 def test_seleniumgrid():
+    logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.DEBUG)
     configs = Properties()
     with open(os.path.abspath(os.path.join(os.getcwd(), os.pardir,'settings.properties')), 'rb') as config_file:
         configs.load(config_file)
@@ -23,8 +24,8 @@ def test_seleniumgrid():
     driver.get("https://www.whatismybrowser.com/")
     driver.maximize_window()
     time.sleep(5)
-    logging.INFO("browser opened")
-    logging.INFO(os.getcwd())
+    logging.info("browser opened")
+    logging.info(os.getcwd())
     if os.path.exists(os.path.join(os.getcwd(),'output')):
         shutil.rmtree(os.path.join(os.getcwd(),'output'))
 
