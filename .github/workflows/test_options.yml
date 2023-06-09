@@ -52,6 +52,8 @@ jobs:
           pip install pytest
           pip install selenium
           pip install webdriver-manager
+          pip install loguru
+          pip install os-sys
           pip install -r requirements.txt
           cd src
           cd TestCases
