@@ -51,6 +51,7 @@ jobs:
           pip install --upgrade pip
           pip install pytest
           pip install selenium
+          pip install webdriver-manager
           pip install -r requirements.txt
           cd src
           cd TestCases
