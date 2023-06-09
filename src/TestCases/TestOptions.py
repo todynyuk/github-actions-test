@@ -8,7 +8,7 @@ import logging
 def test_options():
     #'%(asctime)s - %(levelname)s - %(message)s'
     #logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.DEBUG)
-    logging.basicConfig(filename="output/report.log",format='%(asctime)s - %(levelname)s - %(message)s', level=logging.DEBUG)
+    logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=logging.DEBUG)
     options = Options()
     options.add_argument('--headless')
     options.add_argument('--disable-gpu')
