@@ -1,10 +1,10 @@
 name: GithubActionsTest
 
 on:
-  schedule:
-    - cron: '15 7 * * 1-5'
- # push:
- #    branches: [ master ]
+ # schedule:
+   # - cron: '15 7 * * 1-5'
+  push:
+     branches: [ master ]
 #  push:
 #    branches:
 #      -main
@@ -55,13 +55,19 @@ jobs:
           pip install -r requirements.txt
           cd src
           cd TestCases
-          python -m pytest -vs TestOptions.py
+          python -m pytest -vs TestOptions.py > output.txt 2> error.txt
+       #  python script.py > output.txt 2> error.txt
         #  python TestOptions.py
       - name: Output Result
         uses: actions/upload-artifact@v3
         with:
           name: Output Screenshot
           path: src/TestCases/output/screen.png
+      - name: Output Result Logs
+        uses: actions/upload-artifact@v3
+        with:
+          name: Output Logs
+          path: output.txt
 
       - name: Failure Run
         if: failure()
