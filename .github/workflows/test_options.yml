@@ -55,10 +55,8 @@ jobs:
           pip install -r requirements.txt
           cd src
           cd TestCases
-          status=$(python TestOptions.py > log.txt 2>&1; echo $?)
-          cat log.txt
-          echo ::set-output name=status::$status
-        #   python -m pytest -vs TestOptions.py
+          python -u TestOptions.py > report.txt 2>&1
+       #   python -m pytest -vs TestOptions.py
         #  python -m pytest -vs TestOptions.py > report.txt 2>&1
        #  python script.py > output.txt 2> error.txt
         #  python TestOptions.py
@@ -71,7 +69,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Output Logs
-          path: log.txt
+          path: report.txt
          # path: src/TestCases/output/report.log
 
       - name: Failure Run
