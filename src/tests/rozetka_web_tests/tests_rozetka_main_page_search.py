@@ -7,6 +7,7 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 import sys
+import logging
 
 class TestsRozetkaMainPageSearch:
 
@@ -29,6 +30,8 @@ class TestsRozetkaMainPageSearch:
         button = WebDriverWait(driver, 3).until(EC.visibility_of_element_located((By.XPATH, "//span[@class='goods-tile__title']"))).text
         assert search_text.lower() in str(button).lower(), "Search text not contains in all goods title texts"
         logger.info('Test was successful')
+        logging.info("This is standard logging test")
+        print("This is standard print test")
         time.sleep(5)
         if os.path.exists(os.path.join(os.getcwd(), 'output')):
             shutil.rmtree(os.path.join(os.getcwd(), 'output'))
