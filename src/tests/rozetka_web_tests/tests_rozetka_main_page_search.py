@@ -16,6 +16,8 @@ class TestsRozetkaMainPageSearch:
         options = Options()
         options.add_argument('--headless')
         options.add_argument('--disable-gpu')
+        logger = logging.getLogger('test_application')
+        logger.setLevel(logging.DEBUG)
         driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
         search_text = "Agm A9"
         logger.remove(0)
@@ -30,7 +32,11 @@ class TestsRozetkaMainPageSearch:
         button = WebDriverWait(driver, 3).until(EC.visibility_of_element_located((By.XPATH, "//span[@class='goods-tile__title']"))).text
         assert search_text.lower() in str(button).lower(), "Search text not contains in all goods title texts"
         logger.info('Test was successful')
-        logging.info("This is standard logging test")
+        fh = logging.FileHandler('report.log')
+        fh.setLevel(logging.DEBUG)
+        logging.info("This is standard logging before test")
+        logger.addHandler(fh)
+        logging.info("This is standard logging after test")
         print("This is standard print test")
         time.sleep(5)
         if os.path.exists(os.path.join(os.getcwd(), 'output')):
