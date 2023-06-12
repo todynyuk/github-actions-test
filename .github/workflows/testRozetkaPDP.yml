@@ -42,7 +42,7 @@ jobs:
           pip install -r requirements.txt
           cd src
           cd rozetka_web_tests
-          python -m pytest -vs test_PDP.py > report.txt 2>&1
+          python test_PDP.py pytest
 
       - name: Output Rozetka Result
         uses: actions/upload-artifact@v3
