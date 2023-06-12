@@ -16,8 +16,6 @@ on:
           - firefox
       message:
           required: true
-env:
-  PLAN_NAME: RozetkaPdpPytest
 
 jobs:
   build:
@@ -33,9 +31,6 @@ jobs:
           python-version: '3.10'
       - name: Installing package list
         run: apt list --installed
-
-      - name: Print Environment Variables
-        run: echo "$PLAN_NAME and $JOB_NAME"
 
       - name: Download Packages and Run Pytest
         run: |
@@ -53,7 +48,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Output Rozetka Screenshots
-          path: src/rozetka_web_tests/output
+          path: src/rozetka_web_tests/output/screen_main_page.png
       - name: Output Result Logs
         uses: actions/upload-artifact@v3
         with:
