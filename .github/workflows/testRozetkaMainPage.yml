@@ -42,18 +42,18 @@ jobs:
           cd src
           cd tests
           cd rozetka_web_tests
-          python tests_rozetka_main_page_search.py pytest > output.txt
+          python -m pytest -vs tests_rozetka_main_page_search.py > report.txt 2>&1
 
-      - name: Output Rozetka Result
+      - name: Output Result
         uses: actions/upload-artifact@v3
         with:
-          name: Output Rozetka Screenshots
-          path: src/tests/rozetka_web_tests/output
+          name: Output Screenshots
+          path: src/tests/rozetka_web_tests/output/screen.png
       - name: Output Result Logs
         uses: actions/upload-artifact@v3
         with:
-          name: Output Rozetka Logs
-          path: src/tests/rozetka_web_tests/output.txt
+          name: Output Logs
+          path: src/tests/rozetka_web_tests/report.txt
          # path: src/TestCases/output/report.log
 
       - name: Failure Run
