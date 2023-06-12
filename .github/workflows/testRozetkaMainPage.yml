@@ -45,7 +45,7 @@ jobs:
           cd src
           cd tests
           cd rozetka_web_tests
-          python -m pytest -vs tests_rozetka_main_page_search.py > report.txt 2>&1
+          python tests_rozetka_main_page_search.py pytest > report.log
 
       - name: Output Result
         uses: actions/upload-artifact@v3
@@ -56,7 +56,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Output Logs
-          path: src/tests/rozetka_web_tests/report.txt
+          path: src/tests/rozetka_web_tests/report.log
          # path: src/TestCases/output/report.log
 
       - name: Failure Run
