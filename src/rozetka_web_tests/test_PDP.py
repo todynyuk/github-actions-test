@@ -1,5 +1,4 @@
 import time
-from unittest import TestCase
 from pages.device_page import DevicePage
 from pages.devices_category_page import DeviceCategory
 from pages.main_page import MainPage
@@ -8,7 +7,7 @@ from loguru import logger
 import pyautogui
 import time,os
 
-class TestDetailsPage(TestCase):
+class TestDetailsPage:
     def testItemRamAndPrice(self, driver):
         myScreenshot = pyautogui.screenshot()
         logger.remove(0)
