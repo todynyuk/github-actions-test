@@ -43,7 +43,7 @@ jobs:
           cd src
           cd tests
           cd rozetka_web_tests
-          python test_PDP.py pytest
+          python test_PDP.py pytest > output.txt
 
       - name: Output Rozetka Result
         uses: actions/upload-artifact@v3
@@ -54,7 +54,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Output Rozetka Logs
-          path: src/tests/rozetka_web_tests/report.log
+          path: src/tests/rozetka_web_tests/output.txt
          # path: src/TestCases/output/report.log
 
       - name: Failure Run
