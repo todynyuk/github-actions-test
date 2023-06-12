@@ -42,7 +42,7 @@ jobs:
           cd src
           cd tests
           cd rozetka_web_tests
-          python -m pytest -vs tests_rozetka_main_page_search.py > report.txt 2>&1
+          python pytest tests_rozetka_main_page_search.py  > report.txt
 
       - name: Output Result
         uses: actions/upload-artifact@v3
