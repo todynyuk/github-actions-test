@@ -13,7 +13,7 @@ class TestsRozetkaMainPageSearch:
         main_page = MainPage(driver, 'https://rozetka.com.ua/ua/')
         main_page.open()
         time.sleep(2)
-        driver.save_screenshot('output/screen_main_page.png')
+        driver.save_screenshot('output/screen.png')
         logger.info("Rozetka main page is opened")
         driver.maximize_window()
         driver.find_element(By.CSS_SELECTOR, "input[name='search']").send_keys(search_text)
