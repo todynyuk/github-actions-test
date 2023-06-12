@@ -43,7 +43,7 @@ jobs:
           cd src
           cd tests
           cd rozetka_web_tests
-          python test_PDP.py pytest
+          python test_PDP.py pytest > report.txt 2>&1
 
       - name: Output Rozetka Result
         uses: actions/upload-artifact@v3
