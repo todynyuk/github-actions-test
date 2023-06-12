@@ -1,9 +1,8 @@
 import time
-from pages.device_page import DevicePage
+import pages.device_page as device_page
 from pages.devices_category_page import DeviceCategory
 from pages.main_page import MainPage
 from pages.sub_category_page import SubCategory
-#import logging
 from loguru import logger
 import pyautogui
 import time,os
@@ -33,7 +32,7 @@ class TestDetailsPage:
         time.sleep(2)
         myScreenshot.save(r'output/screen_MoreAboutDevice_page.png')
         logger.info("Page MoreAboutDevice is opened")
-        short_characteristics = DevicePage.verify_device_short_characteristic(self, driver, 12)
+        short_characteristics = device_page.DevicePage.verify_device_short_characteristic(self, driver, 12)
         chosen_device_price = DevicePage.get_chosen_product_price(self, driver)
         assert short_characteristics, "Short_characteristics don't contains chosen ram capacity"
         assert str(smartphone_price) == chosen_device_price, "Prices are not equals"
