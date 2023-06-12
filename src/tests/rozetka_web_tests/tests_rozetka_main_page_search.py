@@ -13,16 +13,17 @@ class TestsRozetkaMainPageSearch:
         main_page = MainPage(driver, 'https://rozetka.com.ua/ua/')
         main_page.open()
         time.sleep(2)
-        driver.get_screenshot_as_file("output/screen_main_page.png") 
+        driver.save_screenshot('output/screen_main_page.png')
         logger.info("Rozetka main page is opened")
         driver.maximize_window()
         driver.find_element(By.CSS_SELECTOR, "input[name='search']").send_keys(search_text)
         driver.find_element(By.CSS_SELECTOR, "button[class*='button_color_green']").click()
         button = WebDriverWait(driver, 3).until(EC.visibility_of_element_located((By.XPATH, "//span[@class='goods-tile__title']"))).text
-        driver.get_screenshot_as_file("output/screen_search_result.png")
-        assert search_text.lower() in str(button).lower(), "Search text not contains in all goods title texts"
-        logger.info('Test was successful')
+        driver.save_screenshot('output/screen_search_result.png')
         if os.path.exists(os.path.join(os.getcwd(), 'output')):
             shutil.rmtree(os.path.join(os.getcwd(), 'output'))
 
         os.mkdir('output')
+        assert search_text.lower() in str(button).lower(), "Search text not contains in all goods title texts"
+        logger.info('Test was successful')
+        driver.close()
