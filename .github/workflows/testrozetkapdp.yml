@@ -5,9 +5,6 @@ on:
    # - cron: '15 7 * * 1-5'
   push:
      branches: [ master ]
-#  push:
-#    branches:
-#      -main
 
   workflow_dispatch:
     inputs:
@@ -19,9 +16,6 @@ on:
           - firefox
       message:
           required: true
-
-
-
 env:
   PLAN_NAME: RozetkaPdpPytest
 
@@ -43,15 +37,11 @@ jobs:
       - name: Print Environment Variables
         run: echo "$PLAN_NAME and $JOB_NAME"
 
-      - name: Download Chrome, Virtualenv and Packages and Run Pytest
+      - name: Download Packages and Run Pytest
         run: |
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo dpkg -i google-chrome-stable_current_amd64.deb
-          google-chrome --version
           pip install --upgrade pip
           pip install pytest
           pip install selenium
-          pip install webdriver-manager
           pip install loguru
           pip install pyautogui
           pip install -r requirements.txt
@@ -59,15 +49,15 @@ jobs:
           cd rozetka_web_tests
           python -m pytest -vs test_PDP.py > report.txt 2>&1
 
-      - name: Output Result
+      - name: Output Rozetka Result
         uses: actions/upload-artifact@v3
         with:
-          name: Output Screenshots
+          name: Output Rozetka Screenshots
           path: src/rozetka_web_tests/output
       - name: Output Result Logs
         uses: actions/upload-artifact@v3
         with:
-          name: Output Logs
+          name: Output Rozetka Logs
           path: src/rozetka_web_tests/report.txt
          # path: src/TestCases/output/report.log
 
