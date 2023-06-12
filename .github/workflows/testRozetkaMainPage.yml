@@ -38,8 +38,6 @@ jobs:
           pip install pytest
           pip install selenium
           pip install loguru
-          pip install mouseinfo
-          pip install pyautogui
           pip install -r requirements.txt
           cd src
           cd tests
