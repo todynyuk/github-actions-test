@@ -1,12 +1,21 @@
 import pytest
 from selenium.webdriver.common.by import By
 from loguru import logger
-import time,os
+import time,os,shutil
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
+import sys
 
 class TestsRozetkaMainPageSearch:
 
     @pytest.mark.label("Search", "correct")
     def test_correct_search(self, driver):
+        options = Options()
+        options.add_argument('--headless')
+        options.add_argument('--disable-gpu')
+        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
         search_text = "Agm A9"
         logger.remove(0)
         logger.add(sys.stdout, level="TRACE") 
