@@ -8,7 +8,6 @@ from selenium.webdriver.chrome.options import Options
 import sys
 import logging
 
-@pytest.mark.label("Search", "correct")
 def test_correct_search(self, driver):
     options = Options()
     options.add_argument('--headless')
