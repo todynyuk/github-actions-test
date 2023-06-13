@@ -43,7 +43,7 @@ jobs:
           pip install -r requirements.txt
           cd src
           cd TestCases
-          python tests_rozetka_main_page_search.py pytest > report.txt 2>&1
+          python tests_rozetka_main_page_search.py pytest > report.txt
 
       - name: Output Result
         uses: actions/upload-artifact@v3
