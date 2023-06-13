@@ -8,7 +8,7 @@
                 "path": "/wd/hub"
             },
             "89.0": {
-                "image": "selenoid/firefox:89.0",
+                "image": "selenoid/vnc_firefox:89.0",
                 "port": "4444",
                 "path": "/wd/hub"
             }
