@@ -15,7 +15,15 @@ def test_correct_search():
     options.add_argument('--disable-gpu')
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
     logger.remove(0)
-    logger.add(sys.stdout, level="TRACE")   
+    logger.add(sys.stdout, level="TRACE") 
+    
+    LOGGER = logging.getLogger(__name__)
+    LOGGER.setLevel(logging.DEBUG) 
+    stdout_handler = logging.StreamHandler(stream=sys.stdout)
+    format_output = logging.Formatter('%(levelname)s : %(name)s : %(message)s : %(asctime)s') # <-
+    stdout_handler.setFormatter(format_output) 
+    LOGGER.addHandler(stdout_handler)
+    
     logger.info("This is an info message.")
     search_text = "Agm A9"
     driver.get("https://rozetka.com.ua/ua/")
@@ -27,7 +35,7 @@ def test_correct_search():
     button = WebDriverWait(driver, 3).until(
         EC.visibility_of_element_located((By.XPATH, "//span[@class='goods-tile__title']"))).text
     assert search_text.lower() in str(button).lower(), "Search text not contains in all goods title texts"
-    logging.info("This is standard logging after test")
+    LOGGER.info("This is standard logging after test")
     print("This is standard print test")
     time.sleep(5)
     driver.get_screenshot_as_file('screen.png')
