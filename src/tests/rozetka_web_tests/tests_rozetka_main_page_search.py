@@ -7,15 +7,19 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 import sys
 import logging
+from loguru import logger
 
 def test_correct_search(self, driver):
     options = Options()
     options.add_argument('--headless')
     options.add_argument('--disable-gpu')
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
+    logger.remove(0)
+    logger.add(sys.stdout, level="TRACE")   
+    logger.info("This is an info message.")
     search_text = "Agm A9"
-    main_page = MainPage(driver, 'https://rozetka.com.ua/ua/')
-    main_page.open()
+    driver.get("https://rozetka.com.ua/ua/")
+    driver.maximize_window()
     time.sleep(2)
     driver.maximize_window()
     driver.find_element(By.CSS_SELECTOR, "input[name='search']").send_keys(search_text)
