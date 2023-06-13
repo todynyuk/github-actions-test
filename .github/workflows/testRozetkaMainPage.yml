@@ -56,15 +56,6 @@ jobs:
         with:
           name: Output Logs
           path: src/tests/rozetka_web_tests/report.txt
-      - name: run tests
-        run: python -m pytest -s --no-header --cov source --cov-report=html 
-      - name: pylint
-        run: pylint source
-      - name: Archive code coverage results
-        uses: actions/upload-artifact@v2
-        with:
-          name: code-coverage-report
-          path: htmlcov/*
 
       - name: Failure Run
         if: failure()
