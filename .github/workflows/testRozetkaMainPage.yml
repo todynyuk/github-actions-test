@@ -57,10 +57,8 @@ jobs:
         with:
           name: Output Logs
           path: src/tests/rozetka_web_tests/report.txt
-      - name: Report via Environment
-        env:
-          pytest_github_report: true
-          run: pytest tests_rozetka_main_page_search.py
+      - name: Report via Command Line
+        run: pytest --github-report tests_rozetka_main_page_search.py
 
       - name: Failure Run
         if: failure()
