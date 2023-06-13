@@ -51,7 +51,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Output Screenshots
-          path: src/tests/rozetka_web_tests/screen.png
+          path: src/tests/rozetka_web_tests/output/screen.png
       - name: Output Result Logs
         uses: actions/upload-artifact@v3
         with:
