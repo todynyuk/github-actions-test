@@ -34,5 +34,6 @@ def test_options():
         shutil.rmtree(os.path.join(os.getcwd(), 'output'))
 
     os.mkdir('output')
+    time.sleep(5)
     driver.save_screenshot('output/screen.png')
     driver.close()
