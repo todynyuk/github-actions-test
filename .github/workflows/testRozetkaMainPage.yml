@@ -57,7 +57,7 @@ jobs:
           name: Output Logs
           path: src/tests/rozetka_web_tests/report.txt
       - name: Run tests
-        run: python tests_rozetka_main_page_search.py pytest --junit-xml=test-results.xml
+        run: pytest tests_rozetka_main_page_search.py  --junit-xml=test-results.xml
 
       - name: Surface failing tests
         if: always()
