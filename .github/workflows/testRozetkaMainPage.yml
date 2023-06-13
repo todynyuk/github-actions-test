@@ -56,17 +56,15 @@ jobs:
         with:
           name: Output Logs
           path: src/tests/rozetka_web_tests/report.txt
-      - name: Run tests
-        run: pytest tests_rozetka_main_page_search.py  --junit-xml=test-results.xml
-
-      - name: Surface failing tests
-        if: always()
-        uses: pmeier/pytest-results-action@main
+      - name: run tests
+        run: python -m pytest -s --no-header --cov source --cov-report=html 
+      - name: pylint
+        run: pylint source
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
         with:
-           path: test-results.xml
-           summary: true
-           display-options: fEX
-           fail-on-empty: true
+          name: code-coverage-report
+          path: htmlcov/*
 
       - name: Failure Run
         if: failure()
