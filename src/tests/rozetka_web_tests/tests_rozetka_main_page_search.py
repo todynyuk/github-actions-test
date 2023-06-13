@@ -9,7 +9,7 @@ import sys
 import logging
 from loguru import logger
 
-def test_correct_search(self, driver):
+def test_correct_search():
     options = Options()
     options.add_argument('--headless')
     options.add_argument('--disable-gpu')
