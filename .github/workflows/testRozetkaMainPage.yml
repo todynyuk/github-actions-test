@@ -16,7 +16,7 @@ on:
           - firefox
       message:
           required: true
-
+  
 jobs:
   build:
     runs-on:  ubuntu-latest
@@ -31,7 +31,7 @@ jobs:
           python-version: '3.10'
       - name: Installing package list
         run: apt list --installed
-
+        
       - name: Download Packages and Run Pytest
         run: |
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -39,23 +39,24 @@ jobs:
           pip install --upgrade pip
           pip install pytest
           pip install selenium
-          pip install webdriver-manager
           pip install loguru
+          pip install webdriver-manager
           pip install -r requirements.txt
           cd src
-          cd TestCases
-          python tests_rozetka_main_page_search.py pytest > report.txt
+          cd tests
+          cd rozetka_web_tests
+          python tests_rozetka_main_page_search.py > report.txt
 
       - name: Output Result
         uses: actions/upload-artifact@v3
         with:
           name: Output Screenshots
-          path: src/TestCases/output/screen.png
+          path: src/tests/rozetka_web_tests/output/screen.png
       - name: Output Result Logs
         uses: actions/upload-artifact@v3
         with:
           name: Output Logs
-          path: src/TestCases/report.txt
+          path: src/tests/rozetka_web_tests/report.txt
 
       - name: Failure Run
         if: failure()
