@@ -6,7 +6,6 @@ import time,os,shutil
 #import logging
 from loguru import logger
 import sys
-import pyautogui
 
 def test_options():
     #'%(asctime)s - %(levelname)s - %(message)s'
@@ -36,8 +35,5 @@ def test_options():
 
     os.mkdir('output')
     time.sleep(5)
-    myScreenshot = pyautogui.screenshot()
-    myScreenshot.save(r'output/screen.png')
+    driver.save_screenshot('output/screen.png')
     driver.close()
-    #driver.save_screenshot('output/screen.png')
-    #driver.close()
