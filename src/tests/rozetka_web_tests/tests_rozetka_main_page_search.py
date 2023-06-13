@@ -30,9 +30,12 @@ def test_correct_search():
     logging.info("This is standard logging after test")
     print("This is standard print test")
     time.sleep(5)
-    driver.save_screenshot('output/screen1.png')
+    driver.get_screenshot_as_file('output/screen.png')
+    driver.save_screenshot('output/screen.png')
     if os.path.exists(os.path.join(os.getcwd(), 'output')):
         shutil.rmtree(os.path.join(os.getcwd(), 'output'))
     os.mkdir('output')
+    driver.get_screenshot_as_file('output/screen.png')
     driver.save_screenshot('output/screen.png')
+    time.sleep(2)
     driver.close()
