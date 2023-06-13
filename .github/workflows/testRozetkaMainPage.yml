@@ -43,9 +43,9 @@ jobs:
           pip install webdriver-manager
           pip install -r requirements.txt
           cd src
-          cd TestCasesSaucedemo
           cd tests
-          python test_cart.py > report.txt
+          cd rozetka_web_tests
+          python tests_rozetka_main_page_search.py > report.txt
 
       - name: Output Result
         uses: actions/upload-artifact@v3
