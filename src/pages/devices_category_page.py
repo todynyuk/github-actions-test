@@ -26,7 +26,7 @@ class DeviceCategory(BasePage):
     def get_prices_list(self, driver):
         choosen_price_devices = []
         for elem in driver.find_elements(By.XPATH, DeviceCategoryLocators.DEVICE_PRICES):
-            choosen_price_devices.append(re.sub('\D', '', elem.text))
+            choosen_price_devices.append(re.sub(r'\D', '', elem.text))
         return choosen_price_devices
 
     def click_check_box_filter(self, driver, param):
@@ -77,7 +77,7 @@ class DeviceCategory(BasePage):
         low_to_hight_price_list = []
         priceItemText = driver.find_elements(By.XPATH, DeviceCategoryLocators.DEVICE_PRICES)
         for i in priceItemText:
-            low_to_hight_price_list.append(re.sub('\D', '', i.text))
+            low_to_hight_price_list.append(re.sub(r'\D', '', i.text))
         return all(low_to_hight_price_list[j] <= low_to_hight_price_list[j + 1] for j in
                    range(len(low_to_hight_price_list) - 1))
 
@@ -85,7 +85,7 @@ class DeviceCategory(BasePage):
         low_to_hight_price_list = []
         priceItemText = driver.find_elements(By.XPATH, DeviceCategoryLocators.DEVICE_PRICES)
         for i in priceItemText:
-            low_to_hight_price_list.append(re.sub('\D', '', i.text))
+            low_to_hight_price_list.append(re.sub(r'\D', '', i.text))
         return all(low_to_hight_price_list[j] >= low_to_hight_price_list[j + 1] for j in
                    range(len(low_to_hight_price_list) - 1))
 
@@ -103,7 +103,7 @@ class DeviceCategory(BasePage):
         low_to_hight_price_list = []
         priceItemText = driver.find_elements(By.XPATH, DeviceCategoryLocators.DEVICE_PRICES)
         for i in priceItemText:
-            low_to_hight_price_list.append(re.sub('\D', '', i.text))
+            low_to_hight_price_list.append(re.sub(r'\D', '', i.text))
         return all(low_to_hight_price_list[j] >= low_to_hight_price_list[j + 1] for j in
                    range(len(low_to_hight_price_list) - 1))
 
