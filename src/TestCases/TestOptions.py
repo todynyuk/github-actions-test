@@ -24,7 +24,7 @@ def test_options():
     #logging.info("browser opened")
     #logging.info('Opening the page...')
     print("Test Print Function In Logs Artifact")
-    driver.get("https://www.whatismybrowser.com/")
+    driver.get("https://www.google.com/")
     driver.maximize_window()
     time.sleep(5)
     #print("================Check loggin start======================")
