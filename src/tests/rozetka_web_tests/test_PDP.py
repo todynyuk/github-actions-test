@@ -4,6 +4,7 @@ from pages.devices_category_page import DeviceCategory
 from pages.main_page import MainPage
 from pages.sub_category_page import SubCategory
 import time,os,sys
+import pytest
 
 class TestDetailsPage:
     @pytest.mark.label("ItemFilter", "RamAndPrice")
