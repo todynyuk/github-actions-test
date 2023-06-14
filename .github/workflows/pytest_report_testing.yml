@@ -46,6 +46,11 @@ jobs:
           summary: true
           display-options: pytest -r
           fail-on-empty: true
+      - name: Output Result
+        uses: actions/upload-artifact@v3
+        with:
+          name: Output Screenshots
+          path: src/rozetka_web_tests/output/screen.png
       - name: Output Result Logs
         uses: actions/upload-artifact@v3
         with:
