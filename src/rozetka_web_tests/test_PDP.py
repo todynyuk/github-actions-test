@@ -26,6 +26,7 @@ def setup():
 @pytest.mark.maintainer("todynyuk")
 @pytest.mark.label("ItemFilter", "RamAndPrice")
 def testItemRamAndPrice(setup):
+        driver.get("https://rozetka.com.ua/ua/")
         time.sleep(2)
         print("This is standard print test")
         driver.find_element(By.XPATH, "//a[@class='menu-categories__link' and contains(.,'Смартфони')]").click()
