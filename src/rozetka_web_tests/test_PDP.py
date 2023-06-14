@@ -25,9 +25,7 @@ def testItemRamAndPrice(setup):
         driver.maximize_window()
         driver.implicitly_wait(10)
         print("This is standard print test")
-        WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable(
-                (By.XPATH, "//a[@class='menu-categories__link' and contains(.,'Смартфони')]"))).click()  
+        driver.find_element(By.XPATH, "//a[@class='menu-categories__link' and contains(.,'Смартфони')]").click() 
         time.sleep(2)
         print("Page Smartphones is opened")
         driver.find_element(By.XPATH,
