@@ -40,7 +40,6 @@ jobs:
         if: always()
         uses: pmeier/pytest-results-action@main
         with:
-
           path: test-results.xml
 
     # Add a summary of the results at the top of the report
