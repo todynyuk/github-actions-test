@@ -3,11 +3,10 @@ from pages.device_page import DevicePage
 from pages.devices_category_page import DeviceCategory
 from pages.main_page import MainPage
 from pages.sub_category_page import SubCategory
-from loguru import logger
-import time,os
+import time,os,sys
 
 class TestDetailsPage:
-    def testItemRamAndPrice(self, driver):
+    def testItemRamAndPrice(self):
         logger.remove(0)
         logger.add(sys.stdout, level="TRACE") 
         main_page = MainPage(driver, 'https://rozetka.com.ua/ua/')
@@ -35,6 +34,3 @@ class TestDetailsPage:
         if os.path.exists(os.path.join(os.getcwd(), 'output')):
             shutil.rmtree(os.path.join(os.getcwd(), 'output'))
         os.mkdir('output')
-        time.sleep(2)
-        driver.save_screenshot('output/screen.png')
-        driver.close()
