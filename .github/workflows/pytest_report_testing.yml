@@ -44,10 +44,6 @@ jobs:
           summary: true
           display-options: pytest -r
           fail-on-empty: true
-      - name: GitHub Action for pytest
-        uses: cclauss/GitHub-Action-for-pytest@master
-        with:
-           args: pytest --log-file=report.log
       - name: Output Result Logs
         uses: actions/upload-artifact@v3
         with:
