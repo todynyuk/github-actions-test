@@ -40,13 +40,13 @@ def testItemRamAndPrice(setup):
         element.click()
         time.sleep(2)
         driver.execute_script("window.scrollTo(0, 220)")
-        smartphone_price = int(re.sub('\D', '', driver.find_element(By.XPATH, "//span[@class='goods-tile__price-value'][1]").text))
+        smartphone_price = int(re.sub(r'\D', '', driver.find_element(By.XPATH, "//span[@class='goods-tile__price-value'][1]").text))
         driver.execute_script("window.scrollTo(0, 220)")
         driver.find_element(By.XPATH, "//a[@class='goods-tile__heading ng-star-inserted'][1]").click()
         time.sleep(2)
         print("MoreAboutDevice Page Smartphones is opened")
         short_characteristics = driver.find_element(By.XPATH, "//h1[@class='product__title']").text.__contains__(str(12))
-        chosen_device_price = re.sub('\D', '', driver.find_element(By.XPATH, "//p[contains(@class,'product-price__big')]").text)
+        chosen_device_price = re.sub(r'\D', '', driver.find_element(By.XPATH, "//p[contains(@class,'product-price__big')]").text)
         assert short_characteristics, "Short_characteristics don't contains chosen ram capacity"
         assert str(smartphone_price) == chosen_device_price, "Prices are not equals"
         print("Test was successful")
