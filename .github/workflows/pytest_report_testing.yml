@@ -32,7 +32,6 @@ jobs:
           pip install pytest-playwright
           pip install requests
           pip install webdriver-manager
-          python pytest > report.txt
       - name: execute py script 
         env:
           SOME_SECRET: ${{ secrets.TEST_SECRET }}
