@@ -44,7 +44,7 @@ jobs:
           summary: true
           display-options: pytest -r
           fail-on-empty: true
-      - name: GitHub Action for pytest
-        uses: cclauss/GitHub-Action-for-pytest@master
+      - name: Summarize test results
+        uses: ./
         with:
-           args: pytest --log-file=report.log
+          path: test-results.xml
