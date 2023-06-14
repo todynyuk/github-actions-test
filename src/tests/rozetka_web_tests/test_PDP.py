@@ -6,6 +6,7 @@ from pages.sub_category_page import SubCategory
 import time,os,sys
 
 class TestDetailsPage:
+    @pytest.mark.label("ItemFilter", "RamAndPrice")
     def testItemRamAndPrice(self,driver):
         main_page = MainPage(driver, 'https://rozetka.com.ua/ua/')
         main_page.open()
