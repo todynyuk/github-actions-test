@@ -6,7 +6,7 @@ from pages.sub_category_page import SubCategory
 import time,os,sys
 
 class TestDetailsPage:
-    def testItemRamAndPrice(self):
+    def testItemRamAndPrice(self,driver):
         logger.remove(0)
         logger.add(sys.stdout, level="TRACE") 
         main_page = MainPage(driver, 'https://rozetka.com.ua/ua/')
