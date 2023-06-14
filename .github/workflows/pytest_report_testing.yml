@@ -47,7 +47,7 @@ jobs:
           cd src
           cd tests
           cd rozetka_web_tests
-          python pytest --junit-xml=test-results.xml
+          pytest --junit-xml=test-results.xml
 
       - name: Output Result
         uses: actions/upload-artifact@v3
