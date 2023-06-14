@@ -4,7 +4,7 @@ from pages.devices_category_page import DeviceCategory
 from pages.main_page import MainPage
 from pages.sub_category_page import SubCategory
 from loguru import logger
-import time,os
+import time,os,sys
 
 class TestDetailsPage:
     def testItemRamAndPrice(self):
