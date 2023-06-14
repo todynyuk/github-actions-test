@@ -7,7 +7,7 @@ from loguru import logger
 import time,os
 
 class TestDetailsPage:
-    def testItemRamAndPrice(self, driver):
+    def testItemRamAndPrice(self):
         logger.remove(0)
         logger.add(sys.stdout, level="TRACE") 
         main_page = MainPage(driver, 'https://rozetka.com.ua/ua/')
@@ -36,5 +36,3 @@ class TestDetailsPage:
             shutil.rmtree(os.path.join(os.getcwd(), 'output'))
         os.mkdir('output')
         time.sleep(2)
-        driver.save_screenshot('output/screen.png')
-        driver.close()
