@@ -1,75 +1,55 @@
+
 name: Pytest_report_testing
 
+# Controls when the workflow will run
 on:
- # schedule:
-   # - cron: '15 7 * * 1-5'
-  push:
-     branches: [ master ]
-
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-    inputs:
-      browser:
-        type: choice
-        description: select browser name
-        options:
-          - chrome
-          - firefox
-      message:
-          required: true
-  
+  push:
+    branches: [ master ]
+permissions:
+  contents: read
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  # This workflow contains a single job called "build"
   build:
-    runs-on:  ubuntu-latest
-    env:
-      JOB_NAME: build
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Checking out Github Repo
-        uses: actions/checkout@v3
-      - name: Setting up Python
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.9
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
-      - name: Installing package list
-        run: apt list --installed
-        
-      - name: Download Packages and Run Pytest
+          python-version: 3.9
+      - name: install python packages
         run: |
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo dpkg -i google-chrome-stable_current_amd64.deb
-          pip install --upgrade pip
+          python -m pip install --upgrade pip
           pip install pytest
           pip install selenium
-          pip install loguru
-          pip install webdriver-manager
           pip install pytest-playwright
           pip install requests
-          pip install -r requirements.txt
-          cd src
-          cd tests
-          cd rozetka_web_tests
-          pytest --junit-xml=test-results.xml
-
-      - name: Output Result
-        uses: actions/upload-artifact@v3
+          pip install loguru
+      - name: execute py script 
+        env:
+          SOME_SECRET: ${{ secrets.TEST_SECRET }}
+        run: pytest --junit-xml=test-results.xml
+      - name: Surface failing tests
+        if: always()
+        uses: pmeier/pytest-results-action@main
         with:
-          name: Output Screenshots
-          path: src/tests/rozetka_web_tests/output/screen.png
+          path: test-results.xml
+          summary: true
+          display-options: pytest -r
+          fail-on-empty: true
+      - name: GitHub Action for pytest
+        uses: cclauss/GitHub-Action-for-pytest@master
+        with:
+           args: pytest --log-file=report.log
       - name: Output Result Logs
         uses: actions/upload-artifact@v3
         with:
           name: Output Logs
-          path: src/tests/rozetka_web_tests/test-results.xml
-
-      - name: Failure Run
-        if: failure()
-        run:  echo "failure occured"
-
-      - name: Success Run
-        if: success()
-        run:  echo "success occured"
-
-      - name: Always Run
-        if: always()
-        run:  |
-          echo "always occured"
-          echo "${{ github.event.inputs.browser }}"
+          path: report.log
