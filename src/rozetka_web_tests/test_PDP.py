@@ -20,7 +20,7 @@ def setup():
 
 @pytest.mark.maintainer("todynyuk")
 @pytest.mark.label("ItemFilter", "RamAndPrice")
-def testItemRamAndPrice(self,setup):
+def testItemRamAndPrice(setup):
         test_url = "https://rozetka.com.ua/ua/"
         options = Options()
         options.add_argument('--headless')
@@ -32,7 +32,7 @@ def testItemRamAndPrice(self,setup):
         os.mkdir('output')
         driver.maximize_window()
         driver.implicitly_wait(10)
-        webdriver.Chrome.save_screenshot(self,'output/screen.png')
+        driver.save_screenshot('output/screen.png')
         print("This is standard print test")
         driver.find_element(By.XPATH, "//a[@class='menu-categories__link' and contains(.,'Смартфони')]").click() 
         time.sleep(2)
