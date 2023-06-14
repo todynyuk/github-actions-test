@@ -31,7 +31,8 @@ jobs:
           pip install selenium
           pip install pytest-playwright
           pip install requests
-          pip install loguru
+          pip install webdriver-manager
+          python pytest > report.txt
       - name: execute py script 
         env:
           SOME_SECRET: ${{ secrets.TEST_SECRET }}
@@ -48,4 +49,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Output Logs
-          path: report.log
+          path: report.txt
