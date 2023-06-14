@@ -32,7 +32,6 @@ jobs:
           pip install pytest-playwright
           pip install requests
           pip install loguru
-          pip install PyAutoGUI
       - name: execute py script 
         env:
           SOME_SECRET: ${{ secrets.TEST_SECRET }}
