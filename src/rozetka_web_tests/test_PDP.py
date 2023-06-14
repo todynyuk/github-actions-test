@@ -21,9 +21,18 @@ def setup():
 @pytest.mark.maintainer("todynyuk")
 @pytest.mark.label("ItemFilter", "RamAndPrice")
 def testItemRamAndPrice(setup):
-        driver.get("https://rozetka.com.ua/ua/")
+        test_url = "https://rozetka.com.ua/ua/"
+        options = Options()
+        options.add_argument('--headless')
+        options.add_argument('--disable-gpu')
+        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
+        driver.get(test_url) 
+        if os.path.exists(os.path.join(os.getcwd(), 'output')):
+            shutil.rmtree(os.path.join(os.getcwd(), 'output'))
+        os.mkdir('output')
         driver.maximize_window()
         driver.implicitly_wait(10)
+        webdriver.Chrome.save_screenshot('output/screen.png')
         print("This is standard print test")
         driver.find_element(By.XPATH, "//a[@class='menu-categories__link' and contains(.,'Смартфони')]").click() 
         time.sleep(2)
@@ -52,8 +61,6 @@ def testItemRamAndPrice(setup):
         assert short_characteristics, "Short_characteristics don't contains chosen ram capacity"
         assert str(smartphone_price) == chosen_device_price, "Prices are not equals"
         print("Test was successful")
-        if os.path.exists(os.path.join(os.getcwd(), 'output')):
-            shutil.rmtree(os.path.join(os.getcwd(), 'output'))
-        os.mkdir('output')
+
         webdriver.Chrome.save_screenshot('output/screen.png')
         webdriver.Chrome.quit()
