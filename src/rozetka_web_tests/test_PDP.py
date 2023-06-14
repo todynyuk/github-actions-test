@@ -11,7 +11,7 @@ from selenium.webdriver import ActionChains
 def setup():
     test_url = "https://rozetka.com.ua/ua/"
     global driver
-    driver= webdriver.Chrome(ChromeDriverManager().install())
+    driver = webdriver.Chrome()
     driver.maximize_window()
     driver.get(test_url)
     driver.implicitly_wait(10)
