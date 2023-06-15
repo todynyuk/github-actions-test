@@ -25,7 +25,7 @@ def setup():
 @pytest.mark.maintainer("todynyuk")
 @pytest.mark.label("ItemFilter", "RamAndPrice")
 def testItemRamAndPrice(setup):
-driver.maximize_window()
+        driver.maximize_window()
         if os.path.exists(os.path.join(os.getcwd(), 'output')):
             shutil.rmtree(os.path.join(os.getcwd(), 'output'))
         os.mkdir('output')
