@@ -35,7 +35,7 @@ def testItemRamAndPrice(setup):
         buttons_card = driver.find_element(By.CSS_SELECTOR, "div[class='card-body']") 
         ActionChains(driver).move_to_element(buttons_card).click()
         time.sleep(2)
-        driver.find_element(By.CSS_SELECTOR, "li[id='item-4']").click()
+        driver.find_element(By.XPATH, "//span[.='Buttons']").click()
         time.sleep(2)
         driver.find_element(By.CSS_SELECTOR, "button[id='E54Ia']").click() 
         time.sleep(2)
