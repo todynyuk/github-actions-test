@@ -50,3 +50,12 @@ def testItemRamAndPrice(setup):
         print("Test was successful")
         driver.save_screenshot('output/screen3.png')
         driver.quit()
+        
+@pytest.mark.skip
+def test_loginPage(setup):
+    pass
+
+'''Test xfail in pytest'''
+@pytest.mark.xfail
+def test_xfail(setup):
+    assert False
