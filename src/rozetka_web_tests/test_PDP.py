@@ -11,7 +11,7 @@ from selenium.webdriver import ActionChains
 
 @pytest.fixture()
 def setup():
-    test_url = "https://demoqa.com/buttons"
+    test_url = "https://demoqa.com"
     global driver
     options = Options()
     options.add_argument('--headless')
@@ -31,7 +31,12 @@ def testItemRamAndPrice(setup):
         os.mkdir('output')
         driver.save_screenshot('output/screen.png')
         print("This is standard print test")
-        driver.find_element(By.ID, "E54Ia").click() 
+        time.sleep(2)
+        driver.find_element(By.CSS_SELECTOR, "div[class='card mt-4 top-card']").click() 
+        time.sleep(2)
+        driver.find_element(By.CSS_SELECTOR, "li[id='item-4']").click()
+        time.sleep(2)
+        driver.find_element(By.CSS_SELECTOR, "button[id='E54Ia']").click() 
         time.sleep(2)
         driver.save_screenshot('output/screen1.png')
         print("BUTTON Click Me is clicked")
