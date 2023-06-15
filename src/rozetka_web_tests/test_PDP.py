@@ -32,7 +32,7 @@ def testItemRamAndPrice(setup):
         driver.save_screenshot('output/screen.png')
         print("This is standard print test")
         time.sleep(2)
-        buttons_card = driver.find_element(By.CSS_SELECTOR, "div[class='card-body']").click() 
+        buttons_card = driver.find_element(By.CSS_SELECTOR, "div[class='card-body']") 
         ActionChains(driver).move_to_element(buttons_card).click().perform()
         time.sleep(2)
         driver.find_element(By.CSS_SELECTOR, "li[id='item-4']").click()
