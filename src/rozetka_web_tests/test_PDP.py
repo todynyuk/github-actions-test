@@ -49,4 +49,4 @@ def testItemRamAndPrice(setup):
         assert str(message) == "You have done a dynamic click", "Prices are not equals"
         print("Test was successful")
         driver.save_screenshot('output/screen3.png')
-        webdriver.Chrome.quit()
+        driver.quit()
