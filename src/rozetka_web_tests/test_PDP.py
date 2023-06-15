@@ -18,7 +18,6 @@ def setup():
     options.add_argument('--disable-gpu')
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
     driver.get(test_url)
-    driver.maximize_window()
     driver.implicitly_wait(10)
     yield
     driver.quit()
@@ -26,13 +25,15 @@ def setup():
 @pytest.mark.maintainer("todynyuk")
 @pytest.mark.label("ItemFilter", "RamAndPrice")
 def testItemRamAndPrice(setup):
+        driver.maximize_window()
         if os.path.exists(os.path.join(os.getcwd(), 'output')):
             shutil.rmtree(os.path.join(os.getcwd(), 'output'))
         os.mkdir('output')
         driver.save_screenshot('output/screen.png')
         print("This is standard print test")
         time.sleep(2)
-        driver.find_element(By.CSS_SELECTOR, "div[class='card-body']").click() 
+        buttons_card = driver.find_element(By.CSS_SELECTOR, "div[class='card-body']").click() 
+        ActionChains(driver).move_to_element(buttons_card).click().perform()
         time.sleep(2)
         driver.find_element(By.CSS_SELECTOR, "li[id='item-4']").click()
         time.sleep(2)
