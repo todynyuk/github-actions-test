@@ -33,7 +33,7 @@ def testItemRamAndPrice(setup):
         print("This is standard print test")
         time.sleep(2)
         buttons_card = driver.find_element(By.CSS_SELECTOR, "div[class='card-body']") 
-        ActionChains(driver).move_to_element(buttons_card).click().perform()
+        ActionChains(driver).move_to_element(buttons_card).click()
         time.sleep(2)
         driver.find_element(By.CSS_SELECTOR, "li[id='item-4']").click()
         time.sleep(2)
