@@ -41,6 +41,7 @@ jobs:
           pip install selenium
           pip install loguru
           pip install webdriver-manager
+          pip install undetected-chromedriver
           pip install -r requirements.txt
           cd src
           cd tests
