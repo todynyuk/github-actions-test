@@ -8,15 +8,22 @@ from selenium.webdriver.chrome.options import Options
 import sys
 import logging
 from loguru import logger
+import undetected_chromedriver as uc
+
+def setup():
+    test_url = "https://rozetka.com.ua/ua/"
+    global driver
+    driver = uc.Chrome(headless=True,use_subprocess=False)
+    driver.get(test_url)
+    time.sleep(2)
+    driver.maximize_window()
+    driver.implicitly_wait(10)
+    yield
+    driver.quit()
 
 def test_correct_search():
-    options = Options()
-    options.add_argument('--headless')
-    options.add_argument('--disable-gpu')
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
     logger.remove(0)
     logger.add(sys.stdout, level="TRACE") 
-    
     LOGGER = logging.getLogger(__name__)
     LOGGER.setLevel(logging.DEBUG) 
     stdout_handler = logging.StreamHandler(stream=sys.stdout)
@@ -24,17 +31,21 @@ def test_correct_search():
     stdout_handler.setFormatter(format_output) 
     LOGGER.addHandler(stdout_handler)
     
+    assert str(driver.title).lower().__contains__("rozetka"), " Title not contains |rozetka| "
     logger.info("This is an info message.")
     search_text = "Agm A9"
-    driver.get("https://rozetka.com.ua/ua/")
-    driver.maximize_window()
-    time.sleep(2)
-    driver.maximize_window()
     driver.find_element(By.CSS_SELECTOR, "input[name='search']").send_keys(search_text)
     driver.find_element(By.CSS_SELECTOR, "button[class*='button_color_green']").click()
-    button = WebDriverWait(driver, 3).until(
-        EC.visibility_of_element_located((By.XPATH, "//span[@class='goods-tile__title']"))).text
-    assert search_text.lower() in str(button).lower(), "Search text not contains in all goods title texts"
+    counter = 0
+    WebDriverWait(driver, 3).until(EC.visibility_of_all_elements_located((By.XPATH, "//span[@class='goods-tile__title']")))    
+    goods_title = driver.find_elements(By.XPATH, "//span[@class='goods-tile__title']")
+    for x in range(1, 6):
+        if goods_title[x].text.lower().__contains__(search_text.lower()):
+            counter += 1
+        else:
+            counter += 0 
+     assert counter == 5, "Search text not contains in all goods title texts"
+   # assert search_text.lower() in str(button).lower(), "Search text not contains in all goods title texts"
     LOGGER.info("This is standard logging after test")
     print("This is standard print test")
     time.sleep(5)
