@@ -44,7 +44,7 @@ def test_correct_search():
             counter += 1
         else:
             counter += 0 
-     assert counter == 5, "Search text not contains in all goods title texts"
+    assert counter == 5, "Search text not contains in all goods title texts"
    # assert search_text.lower() in str(button).lower(), "Search text not contains in all goods title texts"
     LOGGER.info("This is standard logging after test")
     print("This is standard print test")
