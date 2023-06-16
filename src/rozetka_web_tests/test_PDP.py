@@ -8,15 +8,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import ActionChains
+import undetected_chromedriver as uc
 
 @pytest.fixture()
 def setup():
-    test_url = "https://demoqa.com"
+    test_url = "https://rozetka.com.ua/ua/"
     global driver
-    options = Options()
-    options.add_argument('--headless')
-    options.add_argument('--disable-gpu')
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
+    driver = uc.Chrome(headless=True,use_subprocess=False)
     driver.get(test_url)
     driver.implicitly_wait(10)
     yield
@@ -26,29 +24,10 @@ def setup():
 @pytest.mark.label("ItemFilter", "RamAndPrice")
 def testItemRamAndPrice(setup):
         driver.maximize_window()
-        if os.path.exists(os.path.join(os.getcwd(), 'output')):
-            shutil.rmtree(os.path.join(os.getcwd(), 'output'))
-        os.mkdir('output')
-        driver.save_screenshot('output/screen.png')
-        print("This is standard print test")
-        time.sleep(2)
-        button_card = driver.find_element(By.CSS_SELECTOR, "div[class='card-body']") 
-        driver.execute_script("arguments[0].click();", button_card)
-        time.sleep(2)
-        buttons_button = driver.find_element(By.XPATH, "//span[.='Buttons']")
-        driver.execute_script("arguments[0].click();", buttons_button)
-        time.sleep(2)
-        driver.execute_script("window.scrollBy(0,0)","")
-        click_me_button = driver.find_element(By.XPATH, "//button[.='Click Me']") 
-        driver.execute_script("arguments[0].click();", click_me_button)
-        time.sleep(2)
-        driver.save_screenshot('output/screen1.png')
-        print("BUTTON Click Me is clicked")
-        assert driver.find_element(By.ID, "dynamicClickMessage").is_displayed(),"Message not displayed"
-        message = driver.find_element(By.ID, "dynamicClickMessage").text
-        assert str(message) == "You have done a dynamic click", "Prices are not equals"
+        verify_title = str(driver.title).lower().__contains__("rozetka")
+        assert verify_title, " Title not contains |rozetka| "
         print("Test was successful")
-        driver.save_screenshot('output/screen3.png')
+        driver.save_screenshot('output/screen.png')
         driver.quit()
         
 @pytest.mark.skip
