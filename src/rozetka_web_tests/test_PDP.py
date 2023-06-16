@@ -15,13 +15,9 @@ import undetected_chromedriver as uc
 def setup():
     test_url = "https://rozetka.com.ua/ua/"
     global driver
-    options = webdriver.ChromeOptions() 
-    options.headless = True
-    options.add_argument("start-maximized")
-    options.add_experimental_option("excludeSwitches", ["enable-automation"])
-    options.add_experimental_option('useAutomationExtension', False)
-    driver = uc.Chrome()
+    driver = uc.Chrome(headless=True,use_subprocess=False)
     driver.get(test_url)
+    time.sleep(2)
    # driver = uc.Chrome(headless=True,use_subprocess=False)
    # driver.get(test_url)
     driver.implicitly_wait(10)
