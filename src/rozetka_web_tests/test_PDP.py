@@ -20,7 +20,7 @@ def setup():
     options.add_argument("start-maximized")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option('useAutomationExtension', False)
-    driver = uc.Chrome(options=options)
+    driver = uc.Chrome()
     driver.get(test_url)
    # driver = uc.Chrome(headless=True,use_subprocess=False)
    # driver.get(test_url)
