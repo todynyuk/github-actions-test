@@ -1,5 +1,6 @@
 import pytest
 import time,os,re,shutil
+import logging
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -14,8 +15,15 @@ import undetected_chromedriver as uc
 def setup():
     test_url = "https://rozetka.com.ua/ua/"
     global driver
-    driver = uc.Chrome(headless=True,use_subprocess=False)
+    options = webdriver.ChromeOptions() 
+    options.headless = True
+    options.add_argument("start-maximized")
+    options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    options.add_experimental_option('useAutomationExtension', False)
+    driver = uc.Chrome(options=options)
     driver.get(test_url)
+   # driver = uc.Chrome(headless=True,use_subprocess=False)
+   # driver.get(test_url)
     driver.implicitly_wait(10)
     yield
     driver.quit()
@@ -23,7 +31,8 @@ def setup():
 @pytest.mark.maintainer("todynyuk")
 @pytest.mark.label("ItemFilter", "RamAndPrice")
 def testItemRamAndPrice(setup):
-        driver.maximize_window()
+        print(str(driver.title))
+        logging.warning(str(driver.title))
         verify_title = str(driver.title).lower().__contains__("rozetka")
         assert verify_title, " Title not contains |rozetka| "
         print("Test was successful")
