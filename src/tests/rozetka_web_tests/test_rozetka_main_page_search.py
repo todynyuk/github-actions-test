@@ -26,7 +26,7 @@ def setup():
 def test_correct_search():
     test_url = "https://rozetka.com.ua/ua/"
     global driver
-    driver = uc.Chrome(headless=True,use_subprocess=False)
+    driver = uc.Chrome(use_subprocess=True)
     driver.get(test_url)
     time.sleep(3)
     driver.maximize_window()
