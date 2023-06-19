@@ -17,7 +17,7 @@ def setup_search():
     global driver
     driver = uc.Chrome(headless=True,use_subprocess=False)
     driver.get(test_url)
-    time.sleep(20)
+    #time.sleep(20)
     #driver.implicitly_wait(10)
     yield
     driver.quit()
@@ -27,7 +27,7 @@ def setup_search():
 def test_correct_search(setup_search): 
     driver = uc.Chrome(headless=True,use_subprocess=False)
     driver.get("https://rozetka.com.ua/ua/")
-    time.sleep(100)
+    time.sleep(60)
     print('Hello World!', flush=True)
     print(str(driver.title), flush=True)
     logging.warning('It is test logging.warning')
