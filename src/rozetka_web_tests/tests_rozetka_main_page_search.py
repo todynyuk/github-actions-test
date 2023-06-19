@@ -13,7 +13,7 @@ import undetected_chromedriver as uc
 def setup():
     test_url = "https://rozetka.com.ua/ua/"
     global driver
-    driver = uc.Chrome(headless=True,use_subprocess=False)
+    driver = uc.Chrome(use_subprocess=True)
     driver.get(test_url)
     time.sleep(2)
     driver.implicitly_wait(10)
@@ -23,7 +23,8 @@ def setup():
 @pytest.mark.maintainer("todynyuk")
 @pytest.mark.label("Correct search")
 def test_correct_search(setup):
-    print(str(driver.title))
+    print(str(driver.title), flush=True)
+    print('Without headless and use_subprocess=True instead False', flush=True)
     logging.warning(str(driver.title))
     verify_title = str(driver.title).lower().__contains__("rozetka")
     assert verify_title, " Title not contains |rozetka| "
