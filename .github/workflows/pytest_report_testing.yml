@@ -34,6 +34,7 @@ jobs:
           pip install pytest-playwright
           pip install requests
           pip install webdriver-manager
+          pip install cfscrape
           pip install undetected-chromedriver
       - name: execute py script 
         env:
@@ -56,4 +57,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Output Logs
-          path: report.txt
+          path: src/tests/rozetka_web_tests/report.txt
