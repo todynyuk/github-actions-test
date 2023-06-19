@@ -15,7 +15,12 @@ from selenium.webdriver.support import expected_conditions as EC
 def setup():
     test_url = "https://rozetka.com.ua/ua/"
     global driver
-    driver = uc.Chrome(headless=True,use_subprocess=False)
+    options = webdriver.ChromeOptions() 
+    options.headless = True
+    options.add_argument("start-maximized")
+    options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    options.add_experimental_option('useAutomationExtension', False)
+    driver = uc.Chrome(options=options)
     driver.get(test_url)
     time.sleep(2)
     driver.implicitly_wait(10)
