@@ -14,14 +14,11 @@ import cfscrape
 
 @pytest.fixture()
 def setup_search():
-    #test_url = "https://rozetka.com.ua/ua/"
+    test_url = "https://rozetka.com.ua/ua/"
     global driver
-    options = webdriver.ChromeOptions() 
-    options.headless = True
-    options.add_argument("start-maximized")
-    driver = uc.Chrome(options=options)
-    #driver.get(test_url)
-    time.sleep(2)
+    driver = uc.Chrome(headless=True,use_subprocess=False)
+    driver.get(test_url)
+    time.sleep(10)
     driver.implicitly_wait(10)
     yield
     driver.quit()
@@ -29,8 +26,6 @@ def setup_search():
 @pytest.mark.maintainer("todynyuk")
 @pytest.mark.label("Correct search")
 def test_correct_search(setup_search):  
-    scraper = cfscrape.create_scraper() 
-    scraped_data = scraper.get('https://rozetka.com.ua/ua/')
     print('Hello World!', flush=True)
     print(str(driver.title), flush=True)
     logging.warning('It is test logging.warning')
