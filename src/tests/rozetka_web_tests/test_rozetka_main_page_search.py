@@ -12,7 +12,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 @pytest.fixture()
-def setup():
+def setup_search():
     test_url = "https://rozetka.com.ua/ua/"
     global driver
     options = webdriver.ChromeOptions() 
@@ -27,11 +27,10 @@ def setup():
     
 @pytest.mark.maintainer("todynyuk")
 @pytest.mark.label("Correct search")
-def test_correct_search(setup):  
+def test_correct_search(setup_search):  
     print('Hello World!', flush=True)
     print(str(driver.title), flush=True)
     logging.warning('It is test logging.warning')
-    WebDriverWait(driver, 20).until(EC.title_contains("ROZETKA"))
     print(f"Title after WebDriverWait: {str(driver.title)}", flush=True)
     verify_title = str(driver.title).lower().__contains__("rozetka")
     assert verify_title, " Title not contains |rozetka| "
