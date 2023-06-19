@@ -15,7 +15,7 @@ from selenium.webdriver.support import expected_conditions as EC
 def setup_search():
     test_url = "https://rozetka.com.ua/ua/"
     global driver
-    driver = uc.Chrome()
+    driver = uc.Chrome(headless=True,use_subprocess=False)
     driver.get(test_url)
     time.sleep(20)
     #driver.implicitly_wait(10)
