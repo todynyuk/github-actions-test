@@ -15,6 +15,7 @@ from selenium.webdriver.support import expected_conditions as EC
 def setup_search():
     test_url = "https://rozetka.com.ua/ua/"
     global driver
+    uc.TARGET_VERSION = 85
     driver = uc.Chrome(headless=True,use_subprocess=False)
     driver.get(test_url)
     time.sleep(20)
@@ -24,9 +25,7 @@ def setup_search():
     
 @pytest.mark.maintainer("todynyuk")
 @pytest.mark.label("Correct search")
-def test_correct_search(setup_search): 
-    driver = uc.Chrome(headless=True,use_subprocess=False)
-    driver.get("https://rozetka.com.ua/ua/")
+def test_correct_search(setup_search):
     time.sleep(60)
     print('Hello World!', flush=True)
     print(str(driver.title), flush=True)
