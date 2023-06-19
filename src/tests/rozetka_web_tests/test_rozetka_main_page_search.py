@@ -23,7 +23,14 @@ def setup():
     
 @pytest.mark.maintainer("todynyuk")
 @pytest.mark.label("Correct search")
-def test_correct_search(setup):
+def test_correct_search():
+    test_url = "https://rozetka.com.ua/ua/"
+    global driver
+    driver = uc.Chrome(headless=True,use_subprocess=False)
+    driver.get(test_url)
+    time.sleep(3)
+    driver.maximize_window()
+    
     LOGGER = logging.getLogger(__name__)
     LOGGER.setLevel(logging.DEBUG) 
     stdout_handler = logging.StreamHandler(stream=sys.stdout)
@@ -31,6 +38,8 @@ def test_correct_search(setup):
     stdout_handler.setFormatter(format_output) 
     LOGGER.addHandler(stdout_handler)
     
+    print('Hello World!', flush=True)
+    print(str(driver.title), flush=True)
     assert str(driver.title).lower().__contains__("rozetka"), " Title not contains |rozetka| "
     search_text = "Agm A9"
     driver.find_element(By.CSS_SELECTOR, "input[name='search']").send_keys(search_text)
