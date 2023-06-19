@@ -16,31 +16,18 @@ def setup():
     driver = uc.Chrome(headless=True,use_subprocess=False)
     driver.get(test_url)
     time.sleep(2)
-    driver.maximize_window()
     driver.implicitly_wait(10)
     yield
     driver.quit()
     
 @pytest.mark.maintainer("todynyuk")
 @pytest.mark.label("Correct search")
-def test_correct_search():
-    test_url = "https://rozetka.com.ua/ua/"
-    global driver
-    driver = uc.Chrome(use_subprocess=True)
-    driver.get(test_url)
-    time.sleep(3)
-    driver.maximize_window()
-    
-    LOGGER = logging.getLogger(__name__)
-    LOGGER.setLevel(logging.DEBUG) 
-    stdout_handler = logging.StreamHandler(stream=sys.stdout)
-    format_output = logging.Formatter('%(levelname)s : %(name)s : %(message)s : %(asctime)s') # <-
-    stdout_handler.setFormatter(format_output) 
-    LOGGER.addHandler(stdout_handler)
-    
+def test_correct_search(setup):  
     print('Hello World!', flush=True)
     print(str(driver.title), flush=True)
-    assert str(driver.title).lower().__contains__("rozetka"), " Title not contains |rozetka| "
+    logging.warning('It is test logging.warning')
+    verify_title = str(driver.title).lower().__contains__("rozetka")
+    assert verify_title, " Title not contains |rozetka| "
     search_text = "Agm A9"
     driver.find_element(By.CSS_SELECTOR, "input[name='search']").send_keys(search_text)
     driver.find_element(By.CSS_SELECTOR, "button[class*='button_color_green']").click()
