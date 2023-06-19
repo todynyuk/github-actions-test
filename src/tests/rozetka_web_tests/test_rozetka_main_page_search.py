@@ -17,7 +17,7 @@ def setup_search():
     global driver
     driver = uc.Chrome(headless=True,use_subprocess=False)
     driver.get(test_url)
-    #time.sleep(20)
+    time.sleep(20)
     #driver.implicitly_wait(10)
     yield
     driver.quit()
