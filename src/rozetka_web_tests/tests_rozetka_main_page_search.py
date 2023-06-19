@@ -9,6 +9,7 @@ import sys
 import logging
 import undetected_chromedriver as uc
 
+@pytest.fixture()
 def setup():
     test_url = "https://rozetka.com.ua/ua/"
     global driver
@@ -20,6 +21,8 @@ def setup():
     yield
     driver.quit()
 
+@pytest.mark.maintainer("todynyuk")
+@pytest.mark.label("Correct search")
 def test_correct_search(setup):
     LOGGER = logging.getLogger(__name__)
     LOGGER.setLevel(logging.DEBUG) 
@@ -54,7 +57,9 @@ def test_correct_search(setup):
     time.sleep(2)
     driver.close()
 
-    def test_incorrect_search():
+@pytest.mark.maintainer("todynyuk")
+@pytest.mark.label("Incorrect search")
+def test_incorrect_search():
     assert str(driver.title).lower().__contains__("rozetka"), " Title not contains |rozetka| "
     search_text = "hgvhvg"
     driver.find_element(By.CSS_SELECTOR, "input[name='search']").send_keys(search_text)
