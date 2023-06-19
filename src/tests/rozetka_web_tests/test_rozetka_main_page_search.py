@@ -7,7 +7,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 import sys
 import logging
-from loguru import logger
 import undetected_chromedriver as uc
 
 def setup():
@@ -22,8 +21,6 @@ def setup():
     driver.quit()
 
 def test_correct_search():
-    logger.remove(0)
-    logger.add(sys.stdout, level="TRACE") 
     LOGGER = logging.getLogger(__name__)
     LOGGER.setLevel(logging.DEBUG) 
     stdout_handler = logging.StreamHandler(stream=sys.stdout)
@@ -32,7 +29,6 @@ def test_correct_search():
     LOGGER.addHandler(stdout_handler)
     
     assert str(driver.title).lower().__contains__("rozetka"), " Title not contains |rozetka| "
-    logger.info("This is an info message.")
     search_text = "Agm A9"
     driver.find_element(By.CSS_SELECTOR, "input[name='search']").send_keys(search_text)
     driver.find_element(By.CSS_SELECTOR, "button[class*='button_color_green']").click()
