@@ -20,7 +20,7 @@ def setup():
     yield
     driver.quit()
 
-def test_correct_search():
+def test_correct_search(setup):
     LOGGER = logging.getLogger(__name__)
     LOGGER.setLevel(logging.DEBUG) 
     stdout_handler = logging.StreamHandler(stream=sys.stdout)
