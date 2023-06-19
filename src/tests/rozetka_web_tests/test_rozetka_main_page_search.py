@@ -8,6 +8,7 @@ from selenium.webdriver.chrome.options import Options
 import sys
 import logging
 import undetected_chromedriver as uc
+from selenium.webdriver.support.ui import WebDriverWait
 
 @pytest.fixture()
 def setup():
@@ -26,6 +27,8 @@ def test_correct_search(setup):
     print('Hello World!', flush=True)
     print(str(driver.title), flush=True)
     logging.warning('It is test logging.warning')
+    WebDriverWait(driver, 20).until(EC.title_contains("ROZETKA"))
+    print(f"Title after WebDriverWait: {str(driver.title)}", flush=True)
     verify_title = str(driver.title).lower().__contains__("rozetka")
     assert verify_title, " Title not contains |rozetka| "
     search_text = "Agm A9"
