@@ -9,6 +9,7 @@ import sys
 import logging
 import undetected_chromedriver as uc
 
+@pytest.fixture()
 def setup():
     test_url = "https://rozetka.com.ua/ua/"
     global driver
@@ -19,7 +20,9 @@ def setup():
     driver.implicitly_wait(10)
     yield
     driver.quit()
-
+    
+@pytest.mark.maintainer("todynyuk")
+@pytest.mark.label("Correct search")
 def test_correct_search(setup):
     LOGGER = logging.getLogger(__name__)
     LOGGER.setLevel(logging.DEBUG) 
