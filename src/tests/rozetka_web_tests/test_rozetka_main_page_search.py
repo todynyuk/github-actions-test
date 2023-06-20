@@ -30,9 +30,7 @@ def test_correct_search(setup_search):
     print('Hello World!', flush=True)
     print(str(driver.title), flush=True)
     logging.warning('It is test logging.warning')
-    time.sleep(5)
-    driver.refresh()
-    time.sleep(5)
+    time.sleep(10)
     print(f"Title after refresh: {str(driver.title)}", flush=True)
     verify_title = str(driver.title).lower().__contains__("rozetka")
     assert verify_title, " Title not contains |rozetka| "
