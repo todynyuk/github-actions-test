@@ -8,6 +8,7 @@ from selenium.webdriver.chrome.options import Options
 import sys
 import logging
 import undetected_chromedriver as uc
+from selenium.webdriver.support import expected_conditions as EC
 
 @pytest.fixture()
 def setup():
@@ -30,7 +31,8 @@ def test_correct_search(setup):
     assert verify_title, " Title not contains |rozetka| "
     search_text = "Agm A9"
     driver.find_element(By.CSS_SELECTOR, "input[name='search']").send_keys(search_text)
-    driver.find_element(By.CSS_SELECTOR, "button[class*='button_color_green']").click()
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[class*='button_color_green']"))).click()
+    #driver.find_element(By.CSS_SELECTOR, "button[class*='button_color_green']").click()
     counter = 0
     WebDriverWait(driver, 3).until(EC.visibility_of_all_elements_located((By.XPATH, "//span[@class='goods-tile__title']")))    
     goods_title = driver.find_elements(By.XPATH, "//span[@class='goods-tile__title']")
