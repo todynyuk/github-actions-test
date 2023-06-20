@@ -34,7 +34,8 @@ def testItemRamAndPrice(setup):
         driver.find_element(By.XPATH, "//a[@class='menu-categories__link' and contains(.,'Смартфони')]").click() 
         time.sleep(2)
         print("Page Smartphones is opened")
-        driver.find_element(By.XPATH,"//a[contains(@class,'tile-cats__heading') and contains(.,'Мобільні')]").click()
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH,"//a[contains(@class,'tile-cats__heading') and contains(.,'Мобільні')]"))).click()
+        #driver.find_element(By.XPATH,"//a[contains(@class,'tile-cats__heading') and contains(.,'Мобільні')]").click()
         time.sleep(2)
         print("Mobile Page Smartphones is opened")
         WebDriverWait(driver, 10).until(
