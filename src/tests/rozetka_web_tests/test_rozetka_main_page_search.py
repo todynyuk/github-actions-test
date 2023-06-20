@@ -36,7 +36,7 @@ def test_correct_search(setup_search):
     assert verify_title, " Title not contains |rozetka| "
     search_text = "Agm A9"
     driver.find_element(By.CSS_SELECTOR, "input[name='search']").send_keys(search_text)
-    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[class*='button_color_green']"))).click()
+    WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[class*='button_color_green']"))).click()
 
     #driver.find_element(By.CSS_SELECTOR, "button[class*='button_color_green']").click()
     counter = 0
