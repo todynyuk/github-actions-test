@@ -26,7 +26,7 @@ def setup_search():
 @pytest.mark.maintainer("todynyuk")
 @pytest.mark.label("Correct search")
 def test_correct_search(setup_search):
-    time.sleep(5)
+    time.sleep(6)
     print('Hello World!', flush=True)
     print(str(driver.title), flush=True)
     logging.warning('It is test logging.warning')
@@ -36,7 +36,9 @@ def test_correct_search(setup_search):
     assert verify_title, " Title not contains |rozetka| "
     search_text = "Agm A9"
     driver.find_element(By.CSS_SELECTOR, "input[name='search']").send_keys(search_text)
-    driver.find_element(By.CSS_SELECTOR, "button[class*='button_color_green']").click()
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[class*='button_color_green']"))).click()
+
+    #driver.find_element(By.CSS_SELECTOR, "button[class*='button_color_green']").click()
     counter = 0
     WebDriverWait(driver, 3).until(EC.visibility_of_all_elements_located((By.XPATH, "//span[@class='goods-tile__title']")))    
     goods_title = driver.find_elements(By.XPATH, "//span[@class='goods-tile__title']")
