@@ -26,7 +26,7 @@ def setup_search():
 @pytest.mark.maintainer("todynyuk")
 @pytest.mark.label("Correct search")
 def test_correct_search(setup_search):
-    time.sleep(15)
+    time.sleep(10)
     print('Hello World!', flush=True)
     print(str(driver.title), flush=True)
     logging.warning('It is test logging.warning')
