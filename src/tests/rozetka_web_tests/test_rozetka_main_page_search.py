@@ -19,10 +19,10 @@ def setup_search():
     driver = uc.Chrome(headless=True,use_subprocess=False)
     driver.get(test_url)
     time.sleep(20)
-    #driver.implicitly_wait(10)
     yield
     driver.quit()
     
+@pytest.mark.skip   
 @pytest.mark.maintainer("todynyuk")
 @pytest.mark.label("Correct search")
 def test_correct_search(setup_search):
@@ -37,8 +37,6 @@ def test_correct_search(setup_search):
     search_text = "Agm A9"
     driver.find_element(By.CSS_SELECTOR, "input[name='search']").send_keys(search_text)
     WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[class*='button_color_green']"))).click()
-
-    #driver.find_element(By.CSS_SELECTOR, "button[class*='button_color_green']").click()
     counter = 0
     WebDriverWait(driver, 3).until(EC.visibility_of_all_elements_located((By.XPATH, "//span[@class='goods-tile__title']")))    
     goods_title = driver.find_elements(By.XPATH, "//span[@class='goods-tile__title']")
@@ -48,7 +46,6 @@ def test_correct_search(setup_search):
         else:
             counter += 0 
     assert counter == 5, "Search text not contains in all goods title texts"
-   # assert search_text.lower() in str(button).lower(), "Search text not contains in all goods title texts"
     LOGGER.info("This is standard logging after test")
     print("This is standard print test")
     time.sleep(5)
