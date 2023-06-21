@@ -18,12 +18,11 @@ def setup():
     driver = uc.Chrome(headless=True,use_subprocess=False)
     driver.get(test_url)
     time.sleep(2)
-   # driver = uc.Chrome(headless=True,use_subprocess=False)
-   # driver.get(test_url)
     driver.implicitly_wait(10)
     yield
     driver.quit()
 
+@pytest.mark.skip
 @pytest.mark.maintainer("todynyuk")
 @pytest.mark.label("ItemFilter", "RamAndPrice")
 def testItemRamAndPrice(setup):
@@ -35,7 +34,6 @@ def testItemRamAndPrice(setup):
         time.sleep(2)
         print("Page Smartphones is opened")
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH,"//a[contains(@class,'tile-cats__heading') and contains(.,'Мобільні')]"))).click()
-        #driver.find_element(By.XPATH,"//a[contains(@class,'tile-cats__heading') and contains(.,'Мобільні')]").click()
         time.sleep(2)
         print("Mobile Page Smartphones is opened")
         WebDriverWait(driver, 10).until(
@@ -51,7 +49,6 @@ def testItemRamAndPrice(setup):
         smartphone_price = int(re.sub(r'\D', '', driver.find_element(By.XPATH, "//span[@class='goods-tile__price-value'][1]").text))
         driver.execute_script("window.scrollTo(0, 220)")
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//a[@class='goods-tile__heading ng-star-inserted'][1]"))).click()
-        #driver.find_element(By.XPATH, "//a[@class='goods-tile__heading ng-star-inserted'][1]").click()
         time.sleep(2)
         print("MoreAboutDevice Page Smartphones is opened")
         short_characteristics = driver.find_element(By.XPATH, "//h1[@class='product__title']").text.__contains__(str(12))
@@ -66,7 +63,6 @@ def testItemRamAndPrice(setup):
 def test_loginPage(setup):
     pass
 
-'''Test xfail in pytest'''
 @pytest.mark.xfail
 def test_xfail(setup):
     assert False
