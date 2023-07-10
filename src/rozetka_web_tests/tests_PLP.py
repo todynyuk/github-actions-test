@@ -130,7 +130,7 @@ def testVerifySortByPrice(setup):
         if (re.sub(r'\D', '', priceItemText[x].text)) <= (re.sub(r'\D', '', priceItemText[x + 1].text)):
             counter_low_hight += 1
         else:
-            counter_low_hihght += 0
+            counter_low_hight += 0
     assert counter_low_hight == 5, "One or more prices not sorted from low to high price"
     driver.find_element(By.XPATH,
                         "//select[contains(@class,'select-css')]/option[contains(text(),'Від дорогих до дешевих')]")
